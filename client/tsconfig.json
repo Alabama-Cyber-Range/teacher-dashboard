@@ -1,24 +1,29 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "declaration": true,
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "noImplicitAny": false,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "sourceMap": true,
-    "moduleResolution": "node",
-    "target": "esnext",
-    "module": "esnext",
-    "jsx": "react",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
     "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@cyber-range/contracts/*": ["../services/contracts/src/*"]
     }
   },
-  "exclude": ["node_modules"],
-  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
