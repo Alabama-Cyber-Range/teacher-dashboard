@@ -1,0 +1,16 @@
+{
+  "name": "@admin-dashboard/contracts",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc -noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.7",
+    "vitest": "^1.2.2"
+  },
+  "dependencies": {
+    "@tsconfig/node18": "^18.2.4"
+  }
+}
