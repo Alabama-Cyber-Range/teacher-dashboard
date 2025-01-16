@@ -13,6 +13,41 @@ import UsersTable from "./pages/tables/UsersTablePage";
 import Forms from "./pages/forms";
 import EditForm from "./pages/forms/EditForm";
 
+import { Amplify } from 'aws-amplify';
+
+Amplify.configure({
+  Auth: {
+    Cognito: {
+      userPoolClientId: import.meta.env.VITE_APP_USER_POOL_CLIENT_ID,
+      userPoolId: import.meta.env.VITE_APP_USER_POOL_ID,
+      identityPoolId: import.meta.env.VITE_APP_IDENTITY_POOL_ID,
+      loginWith: {
+        oauth: {
+          domain: import.meta.env.VITE_APP_COGNITO_DOMAIN,
+          scopes: [
+            'phone',
+            'email',
+            'profile',
+            'openid',
+            'aws.cognito.signin.user.admin',
+          ],
+          redirectSignIn: [`${window.location.origin}/dashboard`],
+          redirectSignOut: [window.location.origin],
+          responseType: 'code' as const,
+        },
+      },
+    },
+  },
+  API: {
+    GraphQL: {
+      endpoint: import.meta.env.VITE_APP_GRAPHQL_API_URL,
+      region: import.meta.env.VITE_APP_REGION,
+      defaultAuthMode: 'userPool',
+    }
+  }
+
+});
+
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
