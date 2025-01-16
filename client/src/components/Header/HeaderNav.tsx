@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { AiFillGithub } from "react-icons/ai";
 import { baseConfig } from "../../config";
 
+import { Authenticator } from '@aws-amplify/ui-react';
+
 const HeaderNav = () => {
   const navigate = useNavigate();
   return (
@@ -34,7 +36,11 @@ const HeaderNav = () => {
       >
         <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
         <MenuItem>Settings</MenuItem>
-        <MenuItem>Logout</MenuItem>
+        <Authenticator>
+          {({ signOut }) => (
+            <MenuItem onClick={signOut}>Sign out</MenuItem>
+          )}
+    </Authenticator>
       </Menu>
     </>
   );

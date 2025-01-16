@@ -17,6 +17,10 @@ import { Amplify } from 'aws-amplify';
 import { getCurrentUser } from 'aws-amplify/auth';
 import { AuthProvider } from './context/authContext';
 
+import { signInWithRedirect } from 'aws-amplify/auth';
+
+import { Authenticator } from '@aws-amplify/ui-react';
+
 Amplify.configure({
   Auth: {
     Cognito: {
@@ -33,7 +37,7 @@ Amplify.configure({
             'openid',
             'aws.cognito.signin.user.admin',
           ],
-          redirectSignIn: [`${window.location.origin}/dashboard`],
+          redirectSignIn: [`${window.location.origin}/`],
           redirectSignOut: [window.location.origin],
           responseType: 'code' as const,
         },
@@ -70,6 +74,7 @@ async function authLoader() {
 
 export default function App() {
   return (
+    <Authenticator>
     <ThemeProvider theme={theme}>
       <AuthProvider>
       <div>
@@ -94,6 +99,7 @@ export default function App() {
       </div>
       </AuthProvider>
     </ThemeProvider>
+    </Authenticator>
   );
 }
 
