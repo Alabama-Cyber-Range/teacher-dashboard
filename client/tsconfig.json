@@ -24,6 +24,6 @@
       "@admin-dashboard/contracts/*": ["../services/contracts/src/*"]
     }
   },
-  "include": ["src", "vite-env.d.ts"],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
