@@ -9,9 +9,14 @@ import Layout from "./components/Layout";
 import Dashboard from "./pages/dashboard";
 import Profile from "./pages/profile";
 import Tables from "./pages/tables";
-import UsersTable from "./pages/tables/UsersTablePage";
+// import UsersTable from "./pages/tables/UsersTablePage";
 import Forms from "./pages/forms";
 import EditForm from "./pages/forms/EditForm";
+
+import ModulesTable from "./components/Table/ModulesTable";
+import UsersTable from "./components/Table/UsersTable";
+import LearningPathsTable from "./components/Table/LearningPathsTable";
+import SchoolsTable from "./components/Table/SchoolsTable";
 
 import { Amplify } from 'aws-amplify';
 import { getCurrentUser } from 'aws-amplify/auth';
@@ -86,9 +91,13 @@ export default function App() {
             <Route index element={<Dashboard />} loader={protectedLoader} />
             <Route path="forms" element={<Forms />} loader={protectedLoader} />
             <Route path="edit-form" element={<EditForm />} loader={protectedLoader} />
-            <Route path="tables" element={<Tables />} loader={protectedLoader} />
-            <Route path="users-table" element={<UsersTable />} loader={protectedLoader} />
+            {/* <Route path="tables" element={<Tables />} loader={protectedLoader} /> */}
+            {/* <Route path="users-table" element={<UsersTable />} loader={protectedLoader} /> */}
             <Route path="profile" element={<Profile />} loader={protectedLoader} />
+            <Route path="modules" element={<ModulesTable />} loader={protectedLoader} />
+            <Route path="users" element={<UsersTable />} loader={protectedLoader} />
+            <Route path="learning-paths" element={<LearningPathsTable />} loader={protectedLoader} />
+            <Route path="schools" element={<SchoolsTable />} loader={protectedLoader} />
 
             {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
