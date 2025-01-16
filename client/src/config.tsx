@@ -1,14 +1,4 @@
 import React from "react";
-import { Icon } from "@aws-amplify/ui-react";
-
-import {
-  MdDashboard,
-  MdModeEditOutline,
-  MdAccountBox,
-  MdOutlineTableChart,
-  Md2K,
-  MdCircle,
-} from "react-icons/md";
 
 export const baseConfig = {
   projectLink: "/", // GitHub link in the navbar

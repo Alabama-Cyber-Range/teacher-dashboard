@@ -2,7 +2,6 @@ import React from "react";
 import { View, Flex, useTheme } from "@aws-amplify/ui-react";
 import ProfileHeader from "./ProfileHeader";
 import ProfileInformation from "./ProfileInformation";
-import ProfileSettings from "./ProfileSettings";
 import "./Profile.css";
 
 const Profile = () => {
@@ -41,14 +40,6 @@ const Profile = () => {
             padding={{ base: "1em", large: "1.5rem" }}
           >
             <ProfileInformation />
-          </View>
-          <View
-            backgroundColor="var(--amplify-colors-white)"
-            borderRadius="6px"
-            width={{ base: "100%", large: "40%" }}
-            padding={{ base: "1em", large: "1.5rem" }}
-          >
-            <ProfileSettings />
           </View>
         </Flex>
       </View>

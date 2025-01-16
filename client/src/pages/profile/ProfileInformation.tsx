@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Text, Button } from "@aws-amplify/ui-react";
+import { Flex, Text } from "@aws-amplify/ui-react";
 
 const ProfileInformation = () => {
   return (
@@ -25,15 +25,6 @@ const ProfileInformation = () => {
         </Text>
         <Text variation="tertiary">clarkmathews@gmail.com</Text>
       </Flex>
-      <Flex>
-        <Text variation="tertiary" fontWeight="600">
-          Location:
-        </Text>
-        <Text variation="tertiary">United States</Text>
-      </Flex>
-      <div className="profile-card-edit">
-        <Button marginLeft="auto">Edit</Button>
-      </div>
     </div>
   );
 };
