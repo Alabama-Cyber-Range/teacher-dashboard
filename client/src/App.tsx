@@ -1,7 +1,7 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, redirect } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
-import "./App.css";
+// import "./App.css";
 import { ThemeProvider } from "@aws-amplify/ui-react";
 import theme from "./theme";
 
@@ -14,6 +14,8 @@ import Forms from "./pages/forms";
 import EditForm from "./pages/forms/EditForm";
 
 import { Amplify } from 'aws-amplify';
+import { getCurrentUser } from 'aws-amplify/auth';
+import { AuthProvider } from './context/authContext';
 
 Amplify.configure({
   Auth: {
@@ -48,29 +50,49 @@ Amplify.configure({
 
 });
 
+async function protectedLoader() {
+  try {
+    await getCurrentUser();
+    return null;
+  } catch (error) {
+    return redirect('/');
+  }
+}
+
+async function authLoader() {
+  try {
+    await getCurrentUser();
+    return redirect('/');
+  } catch (error) {
+    return null;
+  }
+}
+
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
+      <AuthProvider>
       <div>
         {/* Routes nest inside one another. Nested route paths build upon
             parent route paths, and nested route elements render inside
             parent route elements. See the note about <Outlet> below. */}
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="forms" element={<Forms />} />
-            <Route path="edit-form" element={<EditForm />} />
-            <Route path="tables" element={<Tables />} />
-            <Route path="users-table" element={<UsersTable />} />
-            <Route path="profile" element={<Profile />} />
+          <Route path="/" element={<Layout />} loader={authLoader}>
+            <Route index element={<Dashboard />} loader={protectedLoader} />
+            <Route path="forms" element={<Forms />} loader={protectedLoader} />
+            <Route path="edit-form" element={<EditForm />} loader={protectedLoader} />
+            <Route path="tables" element={<Tables />} loader={protectedLoader} />
+            <Route path="users-table" element={<UsersTable />} loader={protectedLoader} />
+            <Route path="profile" element={<Profile />} loader={protectedLoader} />
 
             {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
                 routes for. */}
-            <Route path="*" element={<NoMatch />} />
+            <Route path="*" element={<NoMatch />} loader={protectedLoader} />
           </Route>
         </Routes>
       </div>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
