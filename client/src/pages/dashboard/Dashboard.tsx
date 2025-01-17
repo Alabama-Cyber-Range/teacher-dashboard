@@ -20,14 +20,14 @@ import "./Dashboard.css";
 /// Mock Data
 const barChartDataDemo = [
   {
-    name: "Web",
+    name: "Alabama Community College System",
     data: [
       11, 8, 9, 10, 3, 11, 11, 11, 12, 13, 2, 12, 5, 8, 22, 6, 8, 6, 4, 1, 8,
       24, 29, 51, 40, 47, 23, 26, 50, 26, 22, 27, 46, 47, 81, 46, 40,
     ],
   },
   {
-    name: "Social",
+    name: "Alabama K-12 System",
     data: [
       7, 5, 4, 3, 3, 11, 4, 7, 5, 12, 12, 15, 13, 12, 6, 7, 7, 1, 5, 5, 2, 12,
       4, 6, 18, 3, 5, 2, 13, 15, 20, 47, 18, 15, 11, 10, 9,
@@ -44,18 +44,18 @@ const barChartDataDemo = [
 
 const lineChartData = [
   {
-    name: "Mobile apps",
+    name: "Alabama Community College System",
     data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
   },
   {
-    name: "Websites",
+    name: "Alabama K-12 System",
     data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
   },
 ];
 
 const customersData = [
   {
-    name: "New Customers",
+    name: "New Users",
     data: [50, 60, 140, 190, 180, 230],
   },
 ];
@@ -97,25 +97,25 @@ const Dashboard = () => {
         >
           <View rowSpan={{ base: 1, large: 1 }}>
             <MiniStatistics
-              title="Page Views"
-              amount="321,236"
+              title="Modules"
+              amount="9999999"
               icon={<MdRemoveRedEye />}
             />
           </View>
           <View rowSpan={{ base: 1, large: 1 }}>
-            <MiniStatistics title="Visits" amount="251,607" icon={<MdWeb />} />
+            <MiniStatistics title="Schools" amount="9999999" icon={<MdWeb />} />
           </View>
           <View rowSpan={{ base: 1, large: 1 }}>
             <MiniStatistics
-              title="Unique Visitors"
-              amount="23,762"
+              title="Users"
+              amount="9999999"
               icon={<MdPermIdentity />}
             />
           </View>
 
           <View columnSpan={[1, 1, 1, 2]} rowSpan={{ base: 3, large: 4 }}>
             <Card borderRadius="15px">
-              <div className="card-title">Traffic Summary</div>
+              <div className="card-title">Usage Summary</div>
               <div className="chart-wrap">
                 {barChartData ? (
                   <div className="row">
@@ -177,7 +177,7 @@ const Dashboard = () => {
           </View>
           <View rowSpan={{ base: 1, large: 4 }}>
             <Card height="100%" borderRadius="15px">
-              <div className="card-title">Traffic Sources</div>
+              <div className="card-title">District Usage</div>
               <div className="chart-wrap">
                 {barChartData ? (
                   <TrafficSources
@@ -185,11 +185,11 @@ const Dashboard = () => {
                     data={trafficSourceData}
                     type="donut"
                     labels={[
-                      "Direct",
-                      "Internal",
-                      "Referrals",
-                      "Search Engines",
-                      "Other",
+                      "District 1",
+                      "District 2",
+                      "District 3",
+                      "District 4",
+                      "District 5",
                     ]}
                   />
                 ) : (
@@ -206,7 +206,7 @@ const Dashboard = () => {
 
           <View columnSpan={[1, 1, 1, 2]} rowSpan={{ base: 3, large: 4 }}>
             <Card borderRadius="15px">
-              <div className="card-title">Sales Summary</div>
+              <div className="card-title">School System Usage Summary</div>
               <div className="chart-wrap">
                 {barChartData ? (
                   <div className="row">
@@ -244,7 +244,7 @@ const Dashboard = () => {
 
           <View rowSpan={{ base: 1, large: 4 }}>
             <Card height="100%" borderRadius="15px">
-              <div className="card-title">New Customers</div>
+              <div className="card-title">New Users</div>
               <div className="chart-wrap">
                 {barChartData ? (
                   <div className="row">

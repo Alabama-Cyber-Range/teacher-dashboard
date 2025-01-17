@@ -5,6 +5,8 @@ import { baseConfig } from "../../config";
 
 import { Authenticator } from '@aws-amplify/ui-react';
 
+import profilePhoto from "../../assets/images/blank_profile.webp";
+
 const HeaderNav = () => {
   const navigate = useNavigate();
   return (
@@ -28,13 +30,12 @@ const HeaderNav = () => {
         trigger={
           <MenuButton variation="menu">
             <div className="header-avatar">
-              <img alt="avatar" src={"https://i.pravatar.cc/150?img=3"}></img>
+              <img alt="avatar" src={profilePhoto}></img>
             </div>
           </MenuButton>
         }
       >
         <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
-        <MenuItem>Settings</MenuItem>
         <Authenticator>
           {({ signOut }) => (
             <MenuItem onClick={signOut}>Sign out</MenuItem>

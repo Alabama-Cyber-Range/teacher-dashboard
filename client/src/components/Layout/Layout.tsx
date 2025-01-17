@@ -6,15 +6,12 @@ import Header from "../Header";
 import Footer from "../Footer";
 import "./Layout.css";
 
-import { getCurrentUser } from 'aws-amplify/auth';
-
 export interface LayoutProps {
   children?: React.ReactNode;
 }
 
 const Layout = () => {
   return (
-    console.log(getCurrentUser()),
     <div className="layout-container">
       {baseConfig.header ? <Header /> : <></>}
       <SideBar />

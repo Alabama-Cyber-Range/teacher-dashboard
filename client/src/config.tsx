@@ -1,29 +1,30 @@
+import alabamaCyberRangeLongLogo from "./assets/images/alabama_cyber_range_long_logo.svg";
+
 export const baseConfig = {
-  projectLink: "/", // GitHub link in the navbar
+  projectLink: "https://github.com/Alabama-Cyber-Range",
   docsRepositoryBase: "", // base URL for the docs repository
   titleSuffix: "",
   search: true,
   header: true,
-  headerText: "Logo",
+  // headerText: "Alabama Cyber Range",
   footer: true,
   footerText: (
     <>
       <span>
-        © MIT {new Date().getFullYear()}, Made with ❤️ by {""}
-        <a href="https://github.com/mrtzdev" target="_blank" rel="noreferrer">
-          Mrtzdev
-        </a>
       </span>
     </>
   ),
 
   logo: (
     <>
-      <img
-        src={process.env.PUBLIC_URL + "/logo.png"}
+      {/* <img
+        src={alabamaCyberRangeLongLogo}
         alt="logo"
         width="30"
         height="22"
+      /> */}
+        <img
+        src={alabamaCyberRangeLongLogo}
       />
     </>
   ),

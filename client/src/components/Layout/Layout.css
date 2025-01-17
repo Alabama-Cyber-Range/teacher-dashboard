@@ -1,13 +1,11 @@
-
 .layout-container {
 background-color: var(--amplify-colors-background-secondary);
 }
 
-
 .page-container {
     padding: 30px;
     padding-left: 290px;
-    padding-top: 50px;
+    padding-top: 75px;
     transition: padding 0.5s;
     overflow-x: hidden;
 }
@@ -21,11 +19,6 @@ background-color: var(--amplify-colors-background-secondary);
     }
 }
 
-
-
 .card-title {
 font-weight: 600;
 }
-
-    
-
