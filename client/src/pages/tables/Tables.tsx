@@ -1,4 +1,3 @@
-import React from "react";
 import { View, Heading, ScrollView } from "@aws-amplify/ui-react";
 import BasicTable from "./BasicTable";
 //import UsersTable from "./UsersTable";

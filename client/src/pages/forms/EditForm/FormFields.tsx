@@ -23,11 +23,11 @@ const FormFields = (props: FormFieldProps) => {
   const [titleHasError, setTitleHasError] = React.useState(true);
   const { values, formFieldChange, formFieldIsValid } = props;
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     formFieldChange(e.target.name, e.target.value);
   };
 
-  const validateTitle = (e) => {
+  const validateTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isEmpty = /^\s*$/.test(e.target.value);
     setTitleHasError(isEmpty);
     formFieldIsValid(e.target.name, !isEmpty);

@@ -36,14 +36,14 @@ const EditForm = () => {
   const saveData = () => {
     setIsLoading(true);
 
-    const doPostForm = async (data) => {
+    const doPostForm = async (data: FormData): Promise<void> => {
       try {
-        const result = await postForm(data);
-        console.log(result);
-        setIsLoading(false);
+      const result: FormData = await postForm(data);
+      console.log(result);
+      setIsLoading(false);
       } catch (error) {
-        console.log(error);
-        setIsLoading(false);
+      console.log(error);
+      setIsLoading(false);
       }
     };
 
