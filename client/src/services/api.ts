@@ -1,10 +1,11 @@
 import { generateClient } from 'aws-amplify/api';
-import { LabsResponse } from '@cyber-range/contracts/Labs';
-import { LabResponse } from '@cyber-range/contracts/Lab';
-import { LearningPathsResponse } from '@cyber-range/contracts/LearningPaths';
-import { LearningPathResponse } from '@cyber-range/contracts/LearningPath';
-import { UserResponse } from '@cyber-range/contracts/User';
-import { SchoolResponse } from '@cyber-range/contracts/School';
+import { LabsResponse } from '@admin-dashboard/contracts/Labs';
+import { LabResponse } from '@admin-dashboard/contracts/Lab';
+import { LearningPathsResponse } from '@admin-dashboard/contracts/LearningPaths';
+import { LearningPathResponse } from '@admin-dashboard/contracts/LearningPath';
+import { UserResponse } from '@admin-dashboard/contracts/User';
+import { SchoolResponse } from '@admin-dashboard/contracts/School';
+import { SchoolsResponse } from '@admin-dashboard/contracts/Schools';
 import { fetchUserAttributes } from '@aws-amplify/auth';
 import {
   listLabs,
@@ -16,6 +17,7 @@ import {
   getUsersByCognitoId,
   listSchool_user_associations,
   getSchools,
+  listSchools,
 } from '../graphql/queries';
 
 const client = generateClient();
@@ -41,6 +43,11 @@ export const get_lab = async (id: number): Promise<LabResponse> => {
 export const get_learning_paths = async (): Promise<LearningPathsResponse> => {
     const response = await client.graphql({ query: listLearning_paths });
     return { learningPaths: response.data.listLearning_paths?.items?.map((lab: any) => ({ ...lab, id: lab.id.toString() })) ?? [] } as LearningPathsResponse;
+    };
+
+export const get_schools = async (): Promise<SchoolResponse> => {
+    const response = await client.graphql({ query: listSchools });
+    return { schools: response.data.listSchools?.items?.map((lab: any) => ({ ...lab, id: lab.id.toString() })) ?? [] } as SchoolsResponse;
     };
 
 export const get_learning_path = async (id: number): Promise<LearningPathResponse> => {

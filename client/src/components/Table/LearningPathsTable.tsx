@@ -7,13 +7,15 @@ import {
   Button,
 } from "@aws-amplify/ui-react";
 
-import { mockSongsData } from "../../data/mock";
-
+import { useLearningPaths } from '../../hooks/useLearningPaths';
+import { LearningPath } from '@admin-dashboard/contracts/LearningPath';
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const data = mockSongsData(10);
-
 const LearningPathsTable = () => {
+  const data = useLearningPaths();
+    useEffect(() => {}
+    , [data]);
   const navigate = useNavigate();
   return (
     <>
@@ -26,9 +28,9 @@ const LearningPathsTable = () => {
         </TableHead>
 
         <TableBody>
-          {data?.map((item) => {
+          {data?.learningPaths?.learningPaths?.map((item: LearningPath) => {
             return (
-              <TableRow key={item._id}>
+              <TableRow key={item.id}>
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.description}</TableCell>
                 <TableCell>

@@ -34,7 +34,7 @@ const ModulesTable = () => {
               <TableRow key={item.id}>
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.description}</TableCell>
-                <TableCell as="th">{item.cloudshare_training_id}</TableCell>
+                <TableCell>{item.cloudshare_training_id}</TableCell>
                 <TableCell>
                   <Button onClick={() => navigate("/edit-form")}>Edit</Button>
                 </TableCell>
