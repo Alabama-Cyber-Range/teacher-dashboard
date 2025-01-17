@@ -8,7 +8,8 @@
 
     /* Bundler mode */
     "moduleResolution": "node",
-    // "allowImportingTsExtensions": true,
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -24,6 +25,6 @@
       "@admin-dashboard/contracts/*": ["../services/contracts/src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "./vite-env.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

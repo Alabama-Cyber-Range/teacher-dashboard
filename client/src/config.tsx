@@ -1,5 +1,3 @@
-import React from "react";
-
 export const baseConfig = {
   projectLink: "/", // GitHub link in the navbar
   docsRepositoryBase: "", // base URL for the docs repository

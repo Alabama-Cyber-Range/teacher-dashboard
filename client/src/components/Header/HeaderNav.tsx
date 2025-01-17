@@ -1,4 +1,3 @@
-import React from "react";
 import { Menu, MenuItem, MenuButton, Link } from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
 import { AiFillGithub } from "react-icons/ai";

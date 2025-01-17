@@ -1,4 +1,3 @@
-import React from "react";
 import { Autocomplete } from "@aws-amplify/ui-react";
 
 //import { baseConfig } from "../../config";

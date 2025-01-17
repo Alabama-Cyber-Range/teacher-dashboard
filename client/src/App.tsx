@@ -1,15 +1,12 @@
-import React from "react";
 import { Routes, Route, Link, redirect } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
-// import "./App.css";
+import "./App.css";
 import { ThemeProvider } from "@aws-amplify/ui-react";
 import theme from "./theme";
 
 import Layout from "./components/Layout";
 import Dashboard from "./pages/dashboard";
 import Profile from "./pages/profile";
-import Tables from "./pages/tables";
-// import UsersTable from "./pages/tables/UsersTablePage";
 import Forms from "./pages/forms";
 import EditForm from "./pages/forms/EditForm";
 
@@ -22,7 +19,6 @@ import { Amplify } from 'aws-amplify';
 import { getCurrentUser } from 'aws-amplify/auth';
 import { AuthProvider } from './context/authContext';
 
-import { signInWithRedirect } from 'aws-amplify/auth';
 
 import { Authenticator } from '@aws-amplify/ui-react';
 
