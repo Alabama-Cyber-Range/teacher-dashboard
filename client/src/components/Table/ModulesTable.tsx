@@ -7,13 +7,15 @@ import {
   Button,
 } from "@aws-amplify/ui-react";
 
-import { mockSongsData } from "../../data/mock";
-
+import { useLabs } from "../../hooks/useLabs";
+import { Lab } from '@admin-dashboard/contracts/Lab';
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const data = mockSongsData(10);
-
 const ModulesTable = () => {
+  const data = useLabs();
+    useEffect(() => {}
+    , [data]);
   const navigate = useNavigate();
   return (
     <>
@@ -27,12 +29,12 @@ const ModulesTable = () => {
         </TableHead>
 
         <TableBody>
-          {data?.map((item) => {
+          {data?.labs?.labs?.map((item: Lab) => {
             return (
-              <TableRow key={item._id}>
+              <TableRow key={item.id}>
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.description}</TableCell>
-                <TableCell as="th">N/A</TableCell>
+                <TableCell as="th">{item.cloudshare_training_id}</TableCell>
                 <TableCell>
                   <Button onClick={() => navigate("/edit-form")}>Edit</Button>
                 </TableCell>

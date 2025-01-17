@@ -1,6 +1,6 @@
 import { View, Flex, useTheme } from "@aws-amplify/ui-react";
 import ProfileHeader from "./ProfileHeader";
-import ProfileInformation from "./ProfileInformation";
+// import ProfileInformation from "./ProfileInformation";
 import "./Profile.css";
 
 const Profile = () => {
@@ -32,14 +32,14 @@ const Profile = () => {
           gap={tokens.space.xl}
           alignItems="flex-start"
         >
-          <View
+          {/* <View
             backgroundColor="var(--amplify-colors-white)"
             borderRadius="6px"
             width={{ base: "100%", large: "40%" }}
             padding={{ base: "1em", large: "1.5rem" }}
-          >
-            <ProfileInformation />
-          </View>
+          > */}
+            {/* <ProfileInformation /> */}
+          {/* </View> */}
         </Flex>
       </View>
     </>

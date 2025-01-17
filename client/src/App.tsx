@@ -19,6 +19,7 @@ import { Amplify } from 'aws-amplify';
 import { getCurrentUser } from 'aws-amplify/auth';
 import { AuthProvider } from './context/authContext';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { Authenticator } from '@aws-amplify/ui-react';
 
@@ -55,6 +56,8 @@ Amplify.configure({
 
 });
 
+const queryClient = new QueryClient();
+
 async function protectedLoader() {
   try {
     await getCurrentUser();
@@ -75,36 +78,38 @@ async function authLoader() {
 
 export default function App() {
   return (
-    <Authenticator>
-    <ThemeProvider theme={theme}>
-      <AuthProvider>
-      <div>
-        {/* Routes nest inside one another. Nested route paths build upon
-            parent route paths, and nested route elements render inside
-            parent route elements. See the note about <Outlet> below. */}
-        <Routes>
-          <Route path="/" element={<Layout />} loader={authLoader}>
-            <Route index element={<Dashboard />} loader={protectedLoader} />
-            <Route path="forms" element={<Forms />} loader={protectedLoader} />
-            <Route path="edit-form" element={<EditForm />} loader={protectedLoader} />
-            {/* <Route path="tables" element={<Tables />} loader={protectedLoader} /> */}
-            {/* <Route path="users-table" element={<UsersTable />} loader={protectedLoader} /> */}
-            <Route path="profile" element={<Profile />} loader={protectedLoader} />
-            <Route path="modules" element={<ModulesTable />} loader={protectedLoader} />
-            <Route path="users" element={<UsersTable />} loader={protectedLoader} />
-            <Route path="learning-paths" element={<LearningPathsTable />} loader={protectedLoader} />
-            <Route path="schools" element={<SchoolsTable />} loader={protectedLoader} />
+    <QueryClientProvider client={queryClient}>
+      <Authenticator>
+        <ThemeProvider theme={theme}>
+          <AuthProvider>
+          <div>
+            {/* Routes nest inside one another. Nested route paths build upon
+                parent route paths, and nested route elements render inside
+                parent route elements. See the note about <Outlet> below. */}
+            <Routes>
+              <Route path="/" element={<Layout />} loader={authLoader}>
+                <Route index element={<Dashboard />} loader={protectedLoader} />
+                <Route path="forms" element={<Forms />} loader={protectedLoader} />
+                <Route path="edit-form" element={<EditForm />} loader={protectedLoader} />
+                {/* <Route path="tables" element={<Tables />} loader={protectedLoader} /> */}
+                {/* <Route path="users-table" element={<UsersTable />} loader={protectedLoader} /> */}
+                <Route path="profile" element={<Profile />} loader={protectedLoader} />
+                <Route path="modules" element={<ModulesTable />} loader={protectedLoader} />
+                <Route path="users" element={<UsersTable />} loader={protectedLoader} />
+                <Route path="learning-paths" element={<LearningPathsTable />} loader={protectedLoader} />
+                <Route path="schools" element={<SchoolsTable />} loader={protectedLoader} />
 
-            {/* Using path="*"" means "match anything", so this route
-                acts like a catch-all for URLs that we don't have explicit
-                routes for. */}
-            <Route path="*" element={<NoMatch />} loader={protectedLoader} />
-          </Route>
-        </Routes>
-      </div>
-      </AuthProvider>
-    </ThemeProvider>
-    </Authenticator>
+                {/* Using path="*"" means "match anything", so this route
+                    acts like a catch-all for URLs that we don't have explicit
+                    routes for. */}
+                <Route path="*" element={<NoMatch />} loader={protectedLoader} />
+              </Route>
+            </Routes>
+          </div>
+          </AuthProvider>
+        </ThemeProvider>
+      </Authenticator>
+    </QueryClientProvider>
   );
 }
 

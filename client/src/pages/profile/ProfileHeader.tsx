@@ -1,13 +1,17 @@
 import { Flex, Text } from "@aws-amplify/ui-react";
+import { useUser } from "../../hooks/useUser";
+import { useEffect } from "react";
 
-interface ProfileHeaderProps {
-  name?: string;
-  email?: string;
-  imageSrc?: string;
-}
+// interface ProfileHeaderProps {
+//   name?: string;
+//   email?: string;
+//   imageSrc?: string;
+// }
 
-const ProfileHeader = (props: ProfileHeaderProps) => {
-  console.log(props);
+const ProfileHeader = () => {
+  const user = useUser();
+  useEffect(() => {}
+  , [user]);
   return (
     <>
       <Flex
@@ -18,13 +22,14 @@ const ProfileHeader = (props: ProfileHeaderProps) => {
         </div>
         <div className="profile-header-text">
           <Text variation="primary" fontWeight={600} fontSize="18px">
-            Clark Mathews
+            {user?.user?.first_name} {user?.user?.last_name}
           </Text>
-          <Text variation="tertiary">clarkmathews@gmail.com</Text>
+          <Text variation="tertiary">{user?.user?.email}</Text>
         </div>
       </Flex>
     </>
   );
+
 };
 
 export default ProfileHeader;
