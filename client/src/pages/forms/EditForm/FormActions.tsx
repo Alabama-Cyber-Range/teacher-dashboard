@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Button } from "@aws-amplify/ui-react";
 
 interface FormActionsProps {
@@ -11,7 +9,7 @@ interface FormActionsProps {
 const FormActions = (props: FormActionsProps) => {
   const { formOnSubmit, isLoading, isDisabled } = props;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     formOnSubmit();
     e.preventDefault();
   };

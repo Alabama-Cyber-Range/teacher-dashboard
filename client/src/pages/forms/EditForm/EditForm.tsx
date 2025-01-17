@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { View, Flex, useTheme } from "@aws-amplify/ui-react";
 import FormFields from "./FormFields";
 import FormActions from "./FormActions";
 
 /// mock api request
 
-const postForm = (data) =>
+interface FormData {
+  title: string;
+  description: string;
+  category: string;
+}
+
+const postForm = (data: FormData): Promise<FormData> =>
   new Promise((resolve, reject) => {
     if (!data.title) {
       reject(new Error("Not all information provided"));

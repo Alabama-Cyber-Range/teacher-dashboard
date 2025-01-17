@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Button,
   Flex,
@@ -20,18 +20,27 @@ const initialValues = {
 const BasicForm = () => {
   const [values, setValues] = useState(initialValues);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
 
-    setValues({
-      ...values,
-      [name]: value,
-    });
-  };
+  interface FormValues {
+    name: string;
+    email: string;
+    animal: string;
+    message: string;
+    subscribe: boolean;
+  }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     /// validate ...
     e.preventDefault();
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>): void => {
+    const { name, value } = e.target;
+
+    setValues((prevValues: FormValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
   };
 
   return (
@@ -69,7 +78,7 @@ const BasicForm = () => {
         />
 
         <RadioGroupField
-          label="Animal"
+          legend="Animal"
           name="animal"
           value={values.animal}
           onChange={handleInputChange}
