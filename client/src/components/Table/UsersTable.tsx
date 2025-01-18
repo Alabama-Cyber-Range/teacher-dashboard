@@ -30,7 +30,10 @@ const ModulesTable = () => {
         </TableHead>
 
         <TableBody>
-          {data?.users?.users?.map((item: User) => {
+            {/*
+              Sort labs by name before mapping
+            */}
+          {data?.users?.users?.sort((a, b) => a.first_name.localeCompare(b.first_name))?.map((item: User) => {
             return (
               <TableRow key={item.id}>
                 <TableCell>{item.first_name}</TableCell>
