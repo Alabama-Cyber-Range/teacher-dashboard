@@ -16,6 +16,7 @@ const SidebarNavToggle = ({ expand, onChange }: NavToggleProps) => {
         className={expand ? "expaned" : ""}
         fontSize="20px"
         height="40px"
+        color="font.primary"
       >
         {expand ? <MdMenuOpen /> : <MdMenu />}
       </Button>

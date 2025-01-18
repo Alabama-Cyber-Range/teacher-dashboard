@@ -5,8 +5,8 @@ const theme: Theme = {
   tokens: {
     colors: {
       font: {
-        primary: { value: "#0d1a26" },
-        // ...
+        primary: { value: "#002868" },
+        secondary: { value: "#fff" },
       },
       background: { secondary: "#f5f8fa" },
     },
