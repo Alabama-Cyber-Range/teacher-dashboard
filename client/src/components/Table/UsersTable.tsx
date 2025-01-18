@@ -7,13 +7,15 @@ import {
   Button,
 } from "@aws-amplify/ui-react";
 
-import { mockSongsData } from "../../data/mock";
-
+import { useUsers } from "../../hooks/useUsers";
+import { User } from '@admin-dashboard/contracts/User';
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const data = mockSongsData(10);
-
 const ModulesTable = () => {
+  const data = useUsers();
+    useEffect(() => {}
+    , [data]);
   const navigate = useNavigate();
   return (
     <>
@@ -22,18 +24,19 @@ const ModulesTable = () => {
           <TableRow>
             <TableCell as="th">First Name</TableCell>
             <TableCell as="th">Last Name</TableCell>
-            <TableCell as="th">Email</TableCell>
             <TableCell as="th">Username</TableCell>
+            <TableCell as="th">Email</TableCell>
           </TableRow>
         </TableHead>
 
         <TableBody>
-          {data?.map((item) => {
+          {data?.users?.users?.map((item: User) => {
             return (
-              <TableRow key={item._id}>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>{item.description}</TableCell>
-                <TableCell as="th">N/A</TableCell>
+              <TableRow key={item.id}>
+                <TableCell>{item.first_name}</TableCell>
+                <TableCell>{item.last_name}</TableCell>
+                <TableCell>{item.cognito_id}</TableCell>
+                <TableCell>{item.email}</TableCell>
                 <TableCell>
                   <Button onClick={() => navigate("/edit-form")}>Edit</Button>
                 </TableCell>

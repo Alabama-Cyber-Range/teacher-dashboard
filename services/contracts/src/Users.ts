@@ -1,5 +1,5 @@
 import { User } from "./User";
 
 export interface UsersResponse {
-    rooms: User[];
+    users: User[];
   }

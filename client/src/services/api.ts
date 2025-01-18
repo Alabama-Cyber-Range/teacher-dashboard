@@ -6,6 +6,7 @@ import { LearningPathResponse } from '@admin-dashboard/contracts/LearningPath';
 import { UserResponse } from '@admin-dashboard/contracts/User';
 import { SchoolResponse } from '@admin-dashboard/contracts/School';
 import { SchoolsResponse } from '@admin-dashboard/contracts/Schools';
+import { UsersResponse } from '@admin-dashboard/contracts/Users';
 import { fetchUserAttributes } from '@aws-amplify/auth';
 import {
   listLabs,
@@ -18,6 +19,7 @@ import {
   listSchool_user_associations,
   getSchools,
   listSchools,
+  listUsers,
 } from '../graphql/queries';
 
 const client = generateClient();
@@ -51,6 +53,12 @@ export const get_schools = async (): Promise<SchoolsResponse> => {
     const response = await client.graphql({ query: listSchools });
     return { schools: response.data.listSchools?.items?.map((school: any) => (
       { ...school, id: school.id.toString() })) ?? [] } as SchoolsResponse;
+    };
+
+export const get_users = async (): Promise<UsersResponse> => {
+    const response = await client.graphql({ query: listUsers });
+    return { users: response.data.listUsers?.items?.map((user: any) => (
+      { ...user, id: user.id.toString() })) ?? [], rooms: [] } as UsersResponse;
     };
 
 export const get_learning_path = async (id: number): Promise<LearningPathResponse> => {
