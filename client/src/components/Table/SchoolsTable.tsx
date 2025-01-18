@@ -27,7 +27,7 @@ const SchoolsTable = () => {
         </TableHead>
 
         <TableBody>
-          {data?.schools?.school?.((item: School) => {
+          {data?.schools?.schools?.map((item: School) => {
             return (
               <TableRow key={item.id}>
                 <TableCell>{item.name}</TableCell>
