@@ -32,7 +32,8 @@ export const get_user_by_cognito_id = async (): Promise<UserResponse> => {
 
 export const get_labs = async (): Promise<LabsResponse> => {
   const response = await client.graphql({ query: listLabs });
-  return { labs: response.data.listLabs?.items?.map((lab: any) => ({ ...lab, id: lab.id.toString() })) ?? [] } as LabsResponse;
+  return { labs: response.data.listLabs?.items?.map((lab: any) => (
+    { ...lab, id: lab.id.toString() })) ?? [] } as LabsResponse;
 };
 
 export const get_lab = async (id: number): Promise<LabResponse> => {
@@ -42,12 +43,14 @@ export const get_lab = async (id: number): Promise<LabResponse> => {
 
 export const get_learning_paths = async (): Promise<LearningPathsResponse> => {
     const response = await client.graphql({ query: listLearning_paths });
-    return { learningPaths: response.data.listLearning_paths?.items?.map((lab: any) => ({ ...lab, id: lab.id.toString() })) ?? [] } as LearningPathsResponse;
+    return { learningPaths: response.data.listLearning_paths?.items?.map((learningPaths: any) => (
+      { ...learningPaths, id: learningPaths.id.toString() })) ?? [] } as LearningPathsResponse;
     };
 
-export const get_schools = async (): Promise<SchoolResponse> => {
+export const get_schools = async (): Promise<SchoolsResponse> => {
     const response = await client.graphql({ query: listSchools });
-    return { schools: response.data.listSchools?.items?.map((lab: any) => ({ ...lab, id: lab.id.toString() })) ?? [] } as SchoolsResponse;
+    return { schools: response.data.listSchools?.items?.map((school: any) => (
+      { ...school, id: school.id.toString() })) ?? [] } as SchoolsResponse;
     };
 
 export const get_learning_path = async (id: number): Promise<LearningPathResponse> => {
