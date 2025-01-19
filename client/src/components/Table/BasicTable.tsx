@@ -28,7 +28,7 @@ const BasicTable = () => {
         </TableHead>
 
         <TableBody>
-          {data?.map((item) => {
+          {data?.sort((a, b) => a.name.localeCompare(b.name))?.map((item) => {
             return (
               <TableRow key={item._id}>
                 <TableCell>{item.name}</TableCell>

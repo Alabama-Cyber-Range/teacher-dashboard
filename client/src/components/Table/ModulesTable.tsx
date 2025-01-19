@@ -29,7 +29,7 @@ const ModulesTable = () => {
         </TableHead>
 
         <TableBody>
-          {data?.labs?.labs?.map((item: Lab) => {
+          {data?.labs?.labs?.sort((a, b) => a.name.localeCompare(b.name))?.map((item: Lab) => {
             return (
               <TableRow key={item.id}>
                 <TableCell>{item.name}</TableCell>

@@ -27,7 +27,7 @@ const SchoolsTable = () => {
         </TableHead>
 
         <TableBody>
-          {data?.schools?.schools?.map((item: School) => {
+          {data?.schools?.schools?.sort((a, b) => a.name.localeCompare(b.name))?.map((item: School) => {
             return (
               <TableRow key={item.id}>
                 <TableCell>{item.name}</TableCell>

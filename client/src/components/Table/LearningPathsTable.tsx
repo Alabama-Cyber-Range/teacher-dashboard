@@ -28,7 +28,7 @@ const LearningPathsTable = () => {
         </TableHead>
 
         <TableBody>
-          {data?.learningPaths?.learningPaths?.map((item: LearningPath) => {
+          {data?.learningPaths?.learningPaths?.sort((a, b) => a.name.localeCompare(b.name))?.map((item: LearningPath) => {
             return (
               <TableRow key={item.id}>
                 <TableCell>{item.name}</TableCell>
