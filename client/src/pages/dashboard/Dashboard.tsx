@@ -15,9 +15,13 @@ import SalesSummary from "./SalesSummary";
 import TrafficSummary from "./TrafficSummary";
 import CustomersSummary from "./CustomersSummary";
 
-import { useNumberUsers } from "../../hooks/useNumberUsers";
-import { useNumberLabs } from "../../hooks/useNumberLabs";
-import { useNumberSchools } from "../../hooks/useNumberSchools";
+// import { useNumberUsers } from "../../hooks/useNumberUsers";
+// import { useNumberLabs } from "../../hooks/useNumberLabs";
+// import { useNumberSchools } from "../../hooks/useNumberSchools";
+
+import { get_number_of_labs } from "../../services/api";
+import { get_number_of_users } from "../../services/api";
+import { get_number_of_schools } from "../../services/api";
 
 import "./Dashboard.css";
 
@@ -76,18 +80,20 @@ const getChartData = () =>
 const Dashboard = () => {
   const [barChartData, setBarChartData] = useState<any | null>(null);
   const [trafficSourceData, setTrafficSourceData] = useState<any | null>(null);
-  const numUsers = useNumberUsers() || { numberUsers: 0 };
-  const numUsersResult = String(numUsers.numberUsers) || "Unknown";
-  const numLabs = useNumberLabs() || { numberLabs: 0 };
-  const numLabsResult = String(numLabs.numberLabs) || "Unknown";
-  const numSchools = useNumberSchools() || { numberSchools: 0 };
-  const numSchoolsResult = String(numSchools.numberSchools) || "Unknown";
-  useEffect(() => {}, [numUsers]);
+  const [numLabsData, setNumLabsData] = useState<any | null>(null);
+  const [numUsersData, setNumUsersData] = useState<any | null>(null);
+  const [numSchoolsData, setNumSchoolsData] = useState<any | null>(null);
   const { tokens } = useTheme();
 
   useEffect(() => {
     const doChartData = async () => {
+      const numLabsResult = await get_number_of_labs();
+      const numUsersResult = await get_number_of_users();
+      const numSchoolsResult = await get_number_of_schools();
       const chartDataResult = await getChartData();
+      setNumLabsData(numLabsResult);
+      setNumUsersData(numUsersResult);
+      setNumSchoolsData(numSchoolsResult);
       setBarChartData(chartDataResult);
       setTrafficSourceData([112332, 123221, 432334, 342334, 133432]);
     };
@@ -109,20 +115,20 @@ const Dashboard = () => {
           <View rowSpan={{ base: 1, large: 1 }}>
             <MiniStatistics
               title="Modules"
-              amount={numLabsResult}
+              amount={numLabsData}
               icon={<MdRemoveRedEye />}
             />
           </View>
           <View rowSpan={{ base: 1, large: 1 }}>
             <MiniStatistics
               title="Schools"
-              amount={numSchoolsResult}
+              amount={numSchoolsData}
               icon={<MdWeb />} />
           </View>
           <View rowSpan={{ base: 1, large: 1 }}>
             <MiniStatistics
               title="Users"
-              amount={numUsersResult}
+              amount={numUsersData}
               icon={<MdPermIdentity />}
             />
           </View>
