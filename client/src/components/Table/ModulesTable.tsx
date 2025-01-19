@@ -19,7 +19,11 @@ const ModulesTable = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Table caption="" highlightOnHover={false}>
+      <Table
+        caption=""
+        highlightOnHover={true}
+        variation="striped"
+        >
         <TableHead>
           <TableRow>
             <TableCell as="th">Title</TableCell>
