@@ -15,6 +15,10 @@ import SalesSummary from "./SalesSummary";
 import TrafficSummary from "./TrafficSummary";
 import CustomersSummary from "./CustomersSummary";
 
+import { useNumberUsers } from "../../hooks/useNumberUsers";
+import { useNumberLabs } from "../../hooks/useNumberLabs";
+import { useNumberSchools } from "../../hooks/useNumberSchools";
+
 import "./Dashboard.css";
 
 /// Mock Data
@@ -72,12 +76,19 @@ const getChartData = () =>
 const Dashboard = () => {
   const [barChartData, setBarChartData] = useState<any | null>(null);
   const [trafficSourceData, setTrafficSourceData] = useState<any | null>(null);
+  const numUsers = useNumberUsers() || { numberUsers: 0 };
+  const numUsersResult = String(numUsers.numberUsers) || "Unknown";
+  const numLabs = useNumberLabs() || { numberLabs: 0 };
+  const numLabsResult = String(numLabs.numberLabs) || "Unknown";
+  const numSchools = useNumberSchools() || { numberSchools: 0 };
+  const numSchoolsResult = String(numSchools.numberSchools) || "Unknown";
+  useEffect(() => {}, [numUsers]);
   const { tokens } = useTheme();
 
   useEffect(() => {
     const doChartData = async () => {
-      const result = await getChartData();
-      setBarChartData(result);
+      const chartDataResult = await getChartData();
+      setBarChartData(chartDataResult);
       setTrafficSourceData([112332, 123221, 432334, 342334, 133432]);
     };
 
@@ -98,17 +109,20 @@ const Dashboard = () => {
           <View rowSpan={{ base: 1, large: 1 }}>
             <MiniStatistics
               title="Modules"
-              amount="9999999"
+              amount={numLabsResult}
               icon={<MdRemoveRedEye />}
             />
           </View>
           <View rowSpan={{ base: 1, large: 1 }}>
-            <MiniStatistics title="Schools" amount="9999999" icon={<MdWeb />} />
+            <MiniStatistics
+              title="Schools"
+              amount={numSchoolsResult}
+              icon={<MdWeb />} />
           </View>
           <View rowSpan={{ base: 1, large: 1 }}>
             <MiniStatistics
               title="Users"
-              amount="9999999"
+              amount={numUsersResult}
               icon={<MdPermIdentity />}
             />
           </View>

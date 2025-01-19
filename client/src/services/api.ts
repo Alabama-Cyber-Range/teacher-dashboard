@@ -211,3 +211,33 @@ export const get_user_school = async (): Promise<SchoolResponse> => {
     // Return in structure "SchoolsPromise" expects
     return { school: schools[0] };
 };
+
+export const get_number_of_users = async (): Promise<number> => {
+  let total = 0;
+  let nextToken: string | undefined = undefined;
+
+  do {
+    // Pass `nextToken` as a variable to fetch the next page if available
+    const response: any = await client.graphql({
+      query: listUsers,
+      variables: { nextToken },
+    });
+
+    const { items, nextToken: newNextToken } = response.data.listUsers ?? {};
+    total += items?.length ?? 0;
+    nextToken = newNextToken;
+
+  } while (nextToken);
+
+  return total;
+};
+
+export const get_number_of_labs = async (): Promise<number> => {
+  const response = await client.graphql({ query: listLabs });
+  return response.data.listLabs?.items?.length ?? 0;
+};
+
+export const get_number_of_schools = async (): Promise<number> => {
+  const response = await client.graphql({ query: listSchools });
+  return response.data.listSchools?.items?.length ?? 0;
+};
