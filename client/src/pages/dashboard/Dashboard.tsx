@@ -5,6 +5,7 @@ import {
   Flex,
   Card,
   Placeholder,
+  Heading,
   useTheme,
 } from "@aws-amplify/ui-react";
 import { MdRemoveRedEye, MdWeb, MdPermIdentity } from "react-icons/md";
@@ -104,9 +105,15 @@ const Dashboard = () => {
   return (
     <>
       <div>
-        <h2>Dashboard</h2>
+        <Heading level={2}>Dashboard</Heading>
       </div>
-      <View borderRadius="6px" maxWidth="100%" padding="0rem" minHeight="100vh">
+      <View
+        borderRadius="6px"
+        maxWidth="100%"
+        padding="0rem"
+        minHeight="100vh"
+        color={tokens.colors.font.primary.value}
+        >
         <Grid
           templateColumns={{ base: "1fr", large: "1fr 1fr 1fr" }}
           templateRows={{ base: "repeat(4, 10rem)", large: "repeat(3, 8rem)" }}
