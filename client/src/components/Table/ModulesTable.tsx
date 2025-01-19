@@ -36,7 +36,11 @@ const ModulesTable = () => {
           {data?.labs?.labs?.sort((a, b) => a.name.localeCompare(b.name))?.map((item: Lab) => {
             return (
               <TableRow key={item.id}>
-                <TableCell>{item.name}</TableCell>
+                <TableCell
+                  onClick={() => navigate(`/modules/${item.id}`)}
+                  style={{ cursor: "pointer" }}
+                  >{item.name}
+                </TableCell>
                 <TableCell>{item.description}</TableCell>
                 <TableCell>{item.cloudshare_training_id}</TableCell>
                 <TableCell>

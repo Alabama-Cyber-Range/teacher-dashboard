@@ -15,6 +15,9 @@ import UsersTable from "./components/Table/UsersTable";
 import LearningPathsTable from "./components/Table/LearningPathsTable";
 import SchoolsTable from "./components/Table/SchoolsTable";
 
+import LearningPath from "./pages/learningPath";
+import School from "./pages/school";
+
 import { Amplify } from 'aws-amplify';
 import { getCurrentUser } from 'aws-amplify/auth';
 import { AuthProvider } from './context/authContext';
@@ -98,6 +101,11 @@ export default function App() {
                 <Route path="users" element={<UsersTable />} loader={protectedLoader} />
                 <Route path="learning-paths" element={<LearningPathsTable />} loader={protectedLoader} />
                 <Route path="schools" element={<SchoolsTable />} loader={protectedLoader} />
+
+                {/* <Route path="modules/:id" element={<ModulesTable />} loader={protectedLoader} /> */}
+                {/* <Route path="users/:id" element={<UsersTable />} loader={protectedLoader} /> */}
+                <Route path="learning-paths/:pathId" element={<LearningPath />} loader={protectedLoader} />
+                <Route path="schools/:schoolId" element={<School />} loader={protectedLoader} />
 
                 {/* Using path="*"" means "match anything", so this route
                     acts like a catch-all for URLs that we don't have explicit

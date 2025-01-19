@@ -61,6 +61,15 @@ export const get_users = async (): Promise<UsersResponse> => {
       { ...user, id: user.id.toString() })) ?? [], rooms: [] } as UsersResponse;
     };
 
+export const get_school = async (id: number): Promise<SchoolResponse> => {
+    const response = await client.graphql({ query: getSchools, variables: { id } });
+    const schoolData = response.data.getSchools;
+    if (!schoolData) {
+        throw new Error('School not found');
+    }
+    return { school: { ...schoolData, id: schoolData.id.toString() } } as SchoolResponse;
+    };
+
 export const get_learning_path = async (id: number): Promise<LearningPathResponse> => {
     const response = await client.graphql({ query: getLearning_paths, variables: { id } });
 
@@ -122,12 +131,9 @@ export const get_path_labs = async (learningPathId: number): Promise<LabsRespons
       return { labs };
     };
 
-export const get_school_labs = async (): Promise<LabsResponse> => {
+export const get_school_labs = async (schoolId: number): Promise<LabsResponse> => {
 
-      const userSchool = await get_user_school();
-      const schoolId = Number(userSchool.school.id);
-
-      // 1) Query associations, filtering by the desired learning path ID
+      // 1) Query associations, filtering by the desired school ID
       const associationResp = await client.graphql({
         query: listSchool_lab_associations,
         variables: {

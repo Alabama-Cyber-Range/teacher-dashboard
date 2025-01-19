@@ -35,7 +35,11 @@ const LearningPathsTable = () => {
           {data?.learningPaths?.learningPaths?.sort((a, b) => a.name.localeCompare(b.name))?.map((item: LearningPath) => {
             return (
               <TableRow key={item.id}>
-                <TableCell>{item.name}</TableCell>
+                <TableCell
+                  onClick={() => navigate(`/learning-paths/${item.id}`)}
+                  style={{ cursor: "pointer" }}
+                  >{item.name}
+                </TableCell>
                 <TableCell>{item.description}</TableCell>
                 <TableCell>
                   <Button onClick={() => navigate("/edit-form")}>Edit</Button>
