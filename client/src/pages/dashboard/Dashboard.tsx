@@ -16,10 +16,6 @@ import SalesSummary from "./SalesSummary";
 import TrafficSummary from "./TrafficSummary";
 import CustomersSummary from "./CustomersSummary";
 
-// import { useNumberUsers } from "../../hooks/useNumberUsers";
-// import { useNumberLabs } from "../../hooks/useNumberLabs";
-// import { useNumberSchools } from "../../hooks/useNumberSchools";
-
 import { get_number_of_labs } from "../../services/api";
 import { get_number_of_users } from "../../services/api";
 import { get_number_of_schools } from "../../services/api";
@@ -104,9 +100,11 @@ const Dashboard = () => {
 
   return (
     <>
-      <div>
+      <View
+        padding="1rem"
+        >
         <Heading level={2}>Dashboard</Heading>
-      </div>
+      </View>
       <View
         borderRadius="6px"
         maxWidth="100%"

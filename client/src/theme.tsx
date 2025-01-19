@@ -13,6 +13,7 @@ const theme: Theme = {
         2: {
           fontSize: { value: '{fontSizes.xl}' },
           fontWeight: { value: '{fontWeights.bold}' },
+          
         }
       },
       text: {
