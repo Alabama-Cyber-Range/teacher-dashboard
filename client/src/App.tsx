@@ -1,8 +1,19 @@
 import { Routes, Route, Link, redirect } from "react-router-dom";
 import "@aws-amplify/ui-react/styles.css";
 import "./App.css";
-import { ThemeProvider } from "@aws-amplify/ui-react";
+import {
+  ThemeProvider,
+  useTheme,
+  Authenticator,
+  useAuthenticator,
+  View,
+  Image,
+  Heading,
+  Button,
+} from "@aws-amplify/ui-react";
 import theme from "./theme";
+
+import AlabamaCyberRangeLogo from "./assets/images/alabama_cyber_range_logo.png";
 
 import Layout from "./components/Layout";
 import Dashboard from "./pages/dashboard";
@@ -23,8 +34,6 @@ import { getCurrentUser } from 'aws-amplify/auth';
 import { AuthProvider } from './context/authContext';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-import { Authenticator } from '@aws-amplify/ui-react';
 
 Amplify.configure({
   Auth: {
@@ -79,11 +88,41 @@ async function authLoader() {
   }
 }
 
+const components = {
+  Header() {
+    const { tokens } = useTheme();
+
+    return (
+      <View textAlign="center" padding={tokens.space.large}>
+        <Image
+          alt="Logo"
+          src={AlabamaCyberRangeLogo}
+          width="200px"
+        />
+      </View>
+    );
+  },
+
+};
+
+const formFields = {
+  signIn: {
+    username: {
+      label: 'Email',
+      placeholder: 'Enter your Email',
+    },
+  },
+};
+
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Authenticator>
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <Authenticator
+          hideSignUp={true}
+          formFields={formFields}
+          // components={components}
+          >
           <AuthProvider>
           <div>
             {/* Routes nest inside one another. Nested route paths build upon
@@ -94,8 +133,6 @@ export default function App() {
                 <Route index element={<Dashboard />} loader={protectedLoader} />
                 <Route path="forms" element={<Forms />} loader={protectedLoader} />
                 <Route path="edit-form" element={<EditForm />} loader={protectedLoader} />
-                {/* <Route path="tables" element={<Tables />} loader={protectedLoader} /> */}
-                {/* <Route path="users-table" element={<UsersTable />} loader={protectedLoader} /> */}
                 <Route path="profile" element={<Profile />} loader={protectedLoader} />
                 <Route path="modules" element={<ModulesTable />} loader={protectedLoader} />
                 <Route path="users" element={<UsersTable />} loader={protectedLoader} />
@@ -107,16 +144,13 @@ export default function App() {
                 <Route path="learning-paths/:pathId" element={<LearningPath />} loader={protectedLoader} />
                 <Route path="schools/:schoolId" element={<School />} loader={protectedLoader} />
 
-                {/* Using path="*"" means "match anything", so this route
-                    acts like a catch-all for URLs that we don't have explicit
-                    routes for. */}
                 <Route path="*" element={<NoMatch />} loader={protectedLoader} />
               </Route>
             </Routes>
           </div>
           </AuthProvider>
-        </ThemeProvider>
-      </Authenticator>
+        </Authenticator>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

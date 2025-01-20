@@ -1,4 +1,5 @@
 import {
+  useTheme,
   Table,
   TableCell,
   TableBody,
@@ -13,6 +14,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LearningPathsTable = () => {
+  const { tokens } = useTheme();
   const data = useLearningPaths();
     useEffect(() => {}
     , [data]);
@@ -22,12 +24,14 @@ const LearningPathsTable = () => {
       <Table
         caption=""
         highlightOnHover={true}
-        variation="striped"
+        backgroundColor={tokens.colors.background.primary.value}
+        // variation="striped"
         >
         <TableHead>
           <TableRow>
             <TableCell as="th">Title</TableCell>
             <TableCell as="th">Description</TableCell>
+            <TableCell as="th"></TableCell>
           </TableRow>
         </TableHead>
 

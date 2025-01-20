@@ -4,6 +4,7 @@ import { baseConfig } from "../../config";
 import SideBar from "../SideBar";
 import Header from "../Header";
 import Footer from "../Footer";
+import { useTheme } from "@aws-amplify/ui-react";
 import "./Layout.css";
 
 export interface LayoutProps {
@@ -11,8 +12,9 @@ export interface LayoutProps {
 }
 
 const Layout = () => {
+  const { tokens } = useTheme();
   return (
-    <div className="layout-container">
+    <div className="layout-container" style={{ background: tokens.colors.background.tertiary.value }}>
       {baseConfig.header ? <Header /> : <></>}
       <SideBar />
 

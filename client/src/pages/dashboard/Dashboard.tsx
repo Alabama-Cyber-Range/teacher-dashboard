@@ -102,6 +102,7 @@ const Dashboard = () => {
     <>
       <View
         padding="1rem"
+        backgroundColor={tokens.colors.background.tertiary.value}
         >
         <Heading level={2}>Dashboard</Heading>
       </View>
@@ -111,6 +112,7 @@ const Dashboard = () => {
         padding="0rem"
         minHeight="100vh"
         color={tokens.colors.font.primary.value}
+        backgroundColor={tokens.colors.background.tertiary.value}
         >
         <Grid
           templateColumns={{ base: "1fr", large: "1fr 1fr 1fr" }}
@@ -139,7 +141,10 @@ const Dashboard = () => {
           </View>
 
           <View columnSpan={[1, 1, 1, 2]} rowSpan={{ base: 3, large: 4 }}>
-            <Card borderRadius="15px">
+            <Card
+            borderRadius="15px"
+            backgroundColor={tokens.colors.background.primary.value}
+            >
               <div className="card-title">Usage Summary</div>
               <div className="chart-wrap">
                 {barChartData ? (
@@ -201,7 +206,11 @@ const Dashboard = () => {
             </Card>
           </View>
           <View rowSpan={{ base: 1, large: 4 }}>
-            <Card height="100%" borderRadius="15px">
+            <Card
+            height="100%"
+            borderRadius="15px"
+            backgroundColor={tokens.colors.background.primary.value}
+            >
               <div className="card-title">District Usage</div>
               <div className="chart-wrap">
                 {barChartData ? (
@@ -230,7 +239,10 @@ const Dashboard = () => {
           </View>
 
           <View columnSpan={[1, 1, 1, 2]} rowSpan={{ base: 3, large: 4 }}>
-            <Card borderRadius="15px">
+            <Card
+            borderRadius="15px"
+            backgroundColor={tokens.colors.background.primary.value}
+            >
               <div className="card-title">School System Usage Summary</div>
               <div className="chart-wrap">
                 {barChartData ? (
@@ -268,7 +280,11 @@ const Dashboard = () => {
           </View>
 
           <View rowSpan={{ base: 1, large: 4 }}>
-            <Card height="100%" borderRadius="15px">
+            <Card
+            height="100%"
+            borderRadius="15px"
+            backgroundColor={tokens.colors.background.primary.value}
+            >
               <div className="card-title">New Users</div>
               <div className="chart-wrap">
                 {barChartData ? (

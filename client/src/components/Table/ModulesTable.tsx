@@ -5,6 +5,7 @@ import {
   TableHead,
   TableRow,
   Button,
+  useTheme,
 } from "@aws-amplify/ui-react";
 
 import { useLabs } from "../../hooks/useLabs";
@@ -13,6 +14,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ModulesTable = () => {
+  const { tokens } = useTheme();
   const data = useLabs();
     useEffect(() => {}
     , [data]);
@@ -20,15 +22,17 @@ const ModulesTable = () => {
   return (
     <>
       <Table
+        backgroundColor={tokens.colors.background.primary.value}
         caption=""
         highlightOnHover={true}
-        variation="striped"
+        // variation="striped"
         >
         <TableHead>
           <TableRow>
             <TableCell as="th">Title</TableCell>
             <TableCell as="th">Description</TableCell>
             <TableCell as="th">CloudShare Training ID</TableCell>
+            <TableCell as="th"></TableCell>
           </TableRow>
         </TableHead>
 

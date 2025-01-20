@@ -5,6 +5,7 @@ import {
   TableHead,
   TableRow,
   Button,
+  useTheme,
 } from "@aws-amplify/ui-react";
 
 import { mockSongsData } from "../../data/mock";
@@ -14,13 +15,15 @@ import { useNavigate } from "react-router-dom";
 const data = mockSongsData(10);
 
 const BasicTable = () => {
+  const { tokens } = useTheme();
   const navigate = useNavigate();
   return (
     <>
       <Table
+        backgroundColor={tokens.colors.background.primary.value}
         caption=""
         highlightOnHover={true}
-        variation="striped"
+        // variation="striped"
         >
         <TableHead>
           <TableRow>

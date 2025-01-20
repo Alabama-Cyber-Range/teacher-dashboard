@@ -5,6 +5,7 @@ import {
   TableHead,
   TableRow,
   Button,
+  useTheme,
 } from "@aws-amplify/ui-react";
 
 import { useUsers } from "../../hooks/useUsers";
@@ -13,6 +14,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ModulesTable = () => {
+  const { tokens } = useTheme();
   const data = useUsers();
     useEffect(() => {}
     , [data]);
@@ -20,9 +22,10 @@ const ModulesTable = () => {
   return (
     <>
       <Table
+        backgroundColor={tokens.colors.background.primary.value}
         caption=""
         highlightOnHover={true}
-        variation="striped"
+        // variation="striped"
         >
         <TableHead>
           <TableRow>
@@ -30,6 +33,7 @@ const ModulesTable = () => {
             <TableCell as="th">Last Name</TableCell>
             <TableCell as="th">Username</TableCell>
             <TableCell as="th">Email</TableCell>
+            <TableCell as="th"></TableCell>
           </TableRow>
         </TableHead>
 

@@ -5,6 +5,7 @@ import {
   TableHead,
   TableRow,
   Button,
+  useTheme,
 } from "@aws-amplify/ui-react";
 
 import { useSchools } from "../../hooks/useSchools";
@@ -13,6 +14,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SchoolsTable = () => {
+  const { tokens } = useTheme();
   const data = useSchools();
     useEffect(() => {}
     , [data]);
@@ -20,13 +22,15 @@ const SchoolsTable = () => {
   return (
     <>
       <Table
+        backgroundColor={tokens.colors.background.primary.value}
         caption=""
         highlightOnHover={true}
-        variation="striped"
+        // variation="striped"
         >
         <TableHead>
           <TableRow>
             <TableCell as="th">Name</TableCell>
+            <TableCell as="th"></TableCell>
           </TableRow>
         </TableHead>
 
