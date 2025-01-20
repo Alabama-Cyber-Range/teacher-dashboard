@@ -3,14 +3,9 @@ import "@aws-amplify/ui-react/styles.css";
 import "./App.css";
 import {
   ThemeProvider,
-  useTheme,
   Authenticator,
-  View,
-  Image,
 } from "@aws-amplify/ui-react";
 import theme from "./theme";
-
-import AlabamaCyberRangeLogo from "./assets/images/alabama_cyber_range_logo.png";
 
 import Layout from "./components/Layout";
 import Dashboard from "./pages/dashboard";
