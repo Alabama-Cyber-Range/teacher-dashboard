@@ -5,11 +5,8 @@ import {
   ThemeProvider,
   useTheme,
   Authenticator,
-  useAuthenticator,
   View,
   Image,
-  Heading,
-  Button,
 } from "@aws-amplify/ui-react";
 import theme from "./theme";
 
@@ -87,23 +84,6 @@ async function authLoader() {
     return null;
   }
 }
-
-const components = {
-  Header() {
-    const { tokens } = useTheme();
-
-    return (
-      <View textAlign="center" padding={tokens.space.large}>
-        <Image
-          alt="Logo"
-          src={AlabamaCyberRangeLogo}
-          width="200px"
-        />
-      </View>
-    );
-  },
-
-};
 
 const formFields = {
   signIn: {
