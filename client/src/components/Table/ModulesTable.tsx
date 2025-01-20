@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Table,
   TableCell,
@@ -6,27 +7,57 @@ import {
   TableRow,
   Button,
   useTheme,
+  Pagination,
 } from "@aws-amplify/ui-react";
+import { useNavigate } from "react-router-dom";
 
 import { useLabs } from "../../hooks/useLabs";
-import { Lab } from '@admin-dashboard/contracts/Lab';
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Lab } from "@admin-dashboard/contracts/Lab";
 
 const ModulesTable = () => {
   const { tokens } = useTheme();
   const data = useLabs();
-    useEffect(() => {}
-    , [data]);
   const navigate = useNavigate();
+
+  // Keep these hooks outside of any condition
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  // Sort labs
+  const sortedLabs = data.labs?.labs?.sort((a: Lab, b: Lab) =>
+    a.name.localeCompare(b.name)
+  ) || [];
+
+  // Pagination math
+  const totalPages = Math.ceil(sortedLabs.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const labsOnPage = sortedLabs.slice(startIndex, endIndex);
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+    window.scrollTo(0, 0);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage(currentPage - 1);
+    window.scrollTo(0, 0);
+  };
+
+  const handleOnChange = (newPageIndex?: number) => {
+    if (newPageIndex !== undefined) {
+      setCurrentPage(newPageIndex);
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <>
       <Table
         backgroundColor={tokens.colors.background.primary.value}
         caption=""
         highlightOnHover={true}
-        // variation="striped"
-        >
+      >
         <TableHead>
           <TableRow>
             <TableCell as="th">Title</TableCell>
@@ -37,24 +68,32 @@ const ModulesTable = () => {
         </TableHead>
 
         <TableBody>
-          {data?.labs?.labs?.sort((a, b) => a.name.localeCompare(b.name))?.map((item: Lab) => {
-            return (
-              <TableRow key={item.id}>
-                <TableCell
-                  onClick={() => navigate(`/modules/${item.id}`)}
-                  style={{ cursor: "pointer" }}
-                  >{item.name}
-                </TableCell>
-                <TableCell>{item.description}</TableCell>
-                <TableCell>{item.cloudshare_training_id}</TableCell>
-                <TableCell>
-                  <Button onClick={() => navigate("/edit-form")}>Edit</Button>
-                </TableCell>
-              </TableRow>
-            );
-          })}
+          {labsOnPage.map((lab: Lab) => (
+            <TableRow key={lab.id}>
+              <TableCell
+                onClick={() => navigate(`/modules/${lab.id}`)}
+                style={{ cursor: "pointer" }}
+              >
+                {lab.name}
+              </TableCell>
+              <TableCell>{lab.description}</TableCell>
+              <TableCell>{lab.cloudshare_training_id}</TableCell>
+              <TableCell>
+                <Button onClick={() => navigate("/edit-form")}>Edit</Button>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
+
+      {/* Pagination component */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onNext={handleNextPage}
+        onPrevious={handlePreviousPage}
+        onChange={handleOnChange}
+    />
     </>
   );
 };
