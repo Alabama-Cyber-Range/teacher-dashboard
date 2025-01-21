@@ -1,11 +1,13 @@
 import { View, Flex, Text, useTheme } from "@aws-amplify/ui-react";
 import { useParams } from 'react-router-dom';
 import { useTargetUser } from "../../hooks/useTargetUser";
+import { useTargetUserSchool } from "../../hooks/useTargetUserSchool";
 
 const User = () => {
     const { tokens } = useTheme();
     const { userId = '' } = useParams<{ userId: string }>()
     const user = useTargetUser(userId);
+    const school = useTargetUserSchool(userId);
     return (
         <>
             <View maxWidth="100%" padding="0rem" minHeight="100vh">
@@ -32,7 +34,7 @@ const User = () => {
                             paddingLeft="1rem"
                             paddingBottom="1rem">
                             <Text variation="tertiary">
-                                School: N/A
+                                School: {school?.school?.name || 'No school associated'}
                             </Text>
                         </View>
                         </div>
