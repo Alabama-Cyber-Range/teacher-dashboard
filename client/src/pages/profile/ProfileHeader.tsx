@@ -2,12 +2,6 @@ import { Flex, Text } from "@aws-amplify/ui-react";
 import { useUser } from "../../hooks/useUser";
 import { useEffect } from "react";
 
-// interface ProfileHeaderProps {
-//   name?: string;
-//   email?: string;
-//   imageSrc?: string;
-// }
-
 const ProfileHeader = () => {
   const user = useUser();
   useEffect(() => {}
