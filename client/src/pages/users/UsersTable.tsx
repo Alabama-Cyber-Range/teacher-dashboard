@@ -42,7 +42,7 @@ const UsersTable = () => {
             return (
               <TableRow key={item.id}>
                 <TableCell
-                  onClick={() => navigate(`/user`)}
+                  onClick={() => navigate(`/users/${item.id}`)}
                   style={{ cursor: "pointer" }}
                   >{item.first_name}
                 </TableCell>

@@ -116,7 +116,7 @@ export default function App() {
                 <Route path="schools" element={<Schools />} loader={protectedLoader} />
 
                 {/* <Route path="modules/:id" element={<ModulesTable />} loader={protectedLoader} /> */}
-                <Route path="user" element={<User />} loader={protectedLoader} />
+                <Route path="users/:userId" element={<User />} loader={protectedLoader} />
                 <Route path="learning-paths/:pathId" element={<LearningPath />} loader={protectedLoader} />
                 <Route path="schools/:schoolId" element={<School />} loader={protectedLoader} />
 

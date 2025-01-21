@@ -16,6 +16,7 @@ import {
   listLearning_path_lab_associations,
   listSchool_lab_associations,
   getUsersByCognitoId,
+  getUsers,
   listSchool_user_associations,
   getSchools,
   listSchools,
@@ -24,11 +25,17 @@ import {
 
 const client = generateClient();
 
-export const get_user_by_cognito_id = async (): Promise<UserResponse> => {
+export const get_user = async (): Promise<UserResponse> => {
   const attributes = await fetchUserAttributes();
   const cognito_id = attributes.sub!;
   const response = await client.graphql({ query: getUsersByCognitoId, variables: { cognito_id } });
   const user = response.data.getUsersByCognitoId;
+  return { user: user ? { ...user, id: user.id.toString() } : null } as UserResponse;
+}
+
+export const get_user_by_id = async (id: number): Promise<UserResponse> => {
+  const response = await client.graphql({ query: getUsers, variables: { id } });
+  const user = response.data.getUsers;
   return { user: user ? { ...user, id: user.id.toString() } : null } as UserResponse;
 }
 
