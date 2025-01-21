@@ -1,15 +1,14 @@
-import { View, Flex, useTheme } from "@aws-amplify/ui-react";
+import { View, Flex, Heading, useTheme } from "@aws-amplify/ui-react";
 import ProfileHeader from "./ProfileHeader";
-// import ProfileInformation from "./ProfileInformation";
 import "./Profile.css";
 
 const Profile = () => {
   const { tokens } = useTheme();
   return (
     <>
-      <div>
-        <h2>Profile</h2>
-      </div>
+      <View padding="1rem">
+        <Heading level={2}>Profile</Heading>
+      </View>
       <View maxWidth="100%" padding="0rem" minHeight="100vh">
         <Flex
           direction={{ base: "column", large: "row" }}
@@ -32,14 +31,6 @@ const Profile = () => {
           gap={tokens.space.xl}
           alignItems="flex-start"
         >
-          {/* <View
-            backgroundColor="var(--amplify-colors-white)"
-            borderRadius="6px"
-            width={{ base: "100%", large: "40%" }}
-            padding={{ base: "1em", large: "1.5rem" }}
-          > */}
-            {/* <ProfileInformation /> */}
-          {/* </View> */}
         </Flex>
       </View>
     </>

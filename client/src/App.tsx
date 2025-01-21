@@ -13,10 +13,10 @@ import Profile from "./pages/profile";
 import Forms from "./pages/forms";
 import EditForm from "./pages/forms/EditForm";
 
-import ModulesTable from "./components/Table/ModulesTable";
-import UsersTable from "./components/Table/UsersTable";
-import LearningPathsTable from "./components/Table/LearningPathsTable";
-import SchoolsTable from "./components/Table/SchoolsTable";
+import Modules from "./pages/modules";
+import Users from "./pages/users";
+import LearningPaths from "./pages/learningPaths";
+import Schools from "./pages/schools";
 
 import LearningPath from "./pages/learningPath";
 import School from "./pages/school";
@@ -109,10 +109,10 @@ export default function App() {
                 <Route path="forms" element={<Forms />} loader={protectedLoader} />
                 <Route path="edit-form" element={<EditForm />} loader={protectedLoader} />
                 <Route path="profile" element={<Profile />} loader={protectedLoader} />
-                <Route path="modules" element={<ModulesTable />} loader={protectedLoader} />
-                <Route path="users" element={<UsersTable />} loader={protectedLoader} />
-                <Route path="learning-paths" element={<LearningPathsTable />} loader={protectedLoader} />
-                <Route path="schools" element={<SchoolsTable />} loader={protectedLoader} />
+                <Route path="modules" element={<Modules />} loader={protectedLoader} />
+                <Route path="users" element={<Users />} loader={protectedLoader} />
+                <Route path="learning-paths" element={<LearningPaths />} loader={protectedLoader} />
+                <Route path="schools" element={<Schools />} loader={protectedLoader} />
 
                 {/* <Route path="modules/:id" element={<ModulesTable />} loader={protectedLoader} /> */}
                 {/* <Route path="users/:id" element={<UsersTable />} loader={protectedLoader} /> */}

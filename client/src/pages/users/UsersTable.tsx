@@ -13,7 +13,7 @@ import { User } from '@admin-dashboard/contracts/User';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const ModulesTable = () => {
+const UsersTable = () => {
   const { tokens } = useTheme();
   const data = useUsers();
     useEffect(() => {}
@@ -57,4 +57,4 @@ const ModulesTable = () => {
   );
 };
 
-export default ModulesTable;
+export default UsersTable;
