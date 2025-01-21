@@ -13,14 +13,14 @@ import {
 import { useParams } from 'react-router-dom';
 import { useSchool } from "../../hooks/useSchool";
 import { useSchoolLabs } from "../../hooks/useSchoolLabs";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const School = () => {
   const { tokens } = useTheme();
   const { schoolId = '' } = useParams<{ schoolId: string }>()
   const school = useSchool(schoolId);
   const modules = useSchoolLabs(Number(schoolId));
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <>
       <View maxWidth="100%" padding="0rem" minHeight="100vh">
@@ -55,7 +55,12 @@ const School = () => {
               {modules?.labs?.labs?.sort((a, b) => a.name.localeCompare(b.name))?.map((module) => {
               return (
                 <TableRow key={module.id}>
-                  <TableCell>{module.name}</TableCell>
+                  <TableCell
+                    onClick={() => navigate(`/modules/${module.id}`)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {module.name}
+                  </TableCell>
                   <TableCell>{module.description}</TableCell>
                   <TableCell>
                     <Button>Remove</Button>

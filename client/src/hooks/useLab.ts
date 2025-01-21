@@ -6,7 +6,7 @@ export const useLab = (id: string) => {
   const { authenticated } = useAuth();
   const { data: lab } = useQuery({
     enabled: authenticated,
-    queryKey: ['lab'],
+    queryKey: ['lab', id],
     queryFn: () => get_lab(Number(id)),
   });
   return lab;

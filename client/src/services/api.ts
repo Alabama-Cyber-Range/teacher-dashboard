@@ -47,7 +47,8 @@ export const get_labs = async (): Promise<LabsResponse> => {
 
 export const get_lab = async (id: number): Promise<LabResponse> => {
   const response = await client.graphql({ query: getLabs, variables: { id } });
-  return response.data as LabResponse;
+  const lab = response.data.getLabs;
+  return { lab: lab ? { ...lab, id: lab.id.toString() } : null } as LabResponse;
 };
 
 export const get_learning_paths = async (): Promise<LearningPathsResponse> => {
@@ -327,4 +328,41 @@ export const get_lab_schools = async (labId: number): Promise<SchoolsResponse> =
 
   // Return in structure "SchoolsPromise" expects
   return { schools };
+};
+
+export const get_lab_learning_paths = async (labId: number): Promise<LearningPathsResponse> => {
+  const associationResp = await client.graphql({
+    query: listLearning_path_lab_associations,
+    variables: {
+      filter: {
+        lab_id: { eq: labId },
+      },
+    },
+  });
+
+  // Extract items safely
+  const associations = associationResp?.data?.listLearning_path_lab_associations?.items ?? [];
+
+  // 2) For each association, fetch the corresponding lab
+  const learningPathPromises = associations.map(async (assoc: any) => {
+    const learningPathResp = await client.graphql({
+      query: getLearning_paths,
+      variables: { id: assoc.learning_path_id },
+    });
+
+    // Transform the response data into desired shape
+    const learningPath = learningPathResp?.data?.getLearning_paths;
+    return {
+      ...learningPath,
+      id: learningPath?.id?.toString() ?? '',
+      name: learningPath?.name ?? '',  // ensure name is a string
+      description: learningPath?.description ?? '',  // ensure description is a string
+    };
+  });
+
+  // 3) Resolve all lab fetches
+  const learningPaths = await Promise.all(learningPathPromises);
+
+  // Return in structure "LearningPathsResponse" expects
+  return { learningPaths };
 };
