@@ -366,3 +366,43 @@ export const get_lab_learning_paths = async (labId: number): Promise<LearningPat
   // Return in structure "LearningPathsResponse" expects
   return { learningPaths };
 };
+
+export const get_school_users = async (schoolId: number): Promise<UsersResponse> => {
+  const associationResp = await client.graphql({
+    query: listSchool_user_associations,
+    variables: {
+      filter: {
+        school_id: { eq: schoolId },
+      },
+    },
+  });
+
+  // Extract items safely
+  const associations = associationResp?.data?.listSchool_user_associations?.items ?? [];
+
+  // 2) For each association, fetch the corresponding lab
+  const userPromises = associations.map(async (assoc: any) => {
+    const userResp = await client.graphql({
+      query: getUsers,
+      variables: { id: assoc.user_id },
+    });
+
+    // Transform the response data into desired shape
+    const user = userResp?.data?.getUsers;
+    return {
+      ...user,
+      id: user?.id?.toString() ?? '',
+      email: user?.email ?? '',  // ensure email is a string
+      first_name: user?.first_name ?? '',  // ensure first_name is a string
+      last_name: user?.last_name ?? '',  // ensure last_name is a string
+      created_at: user?.created_at ?? '',  // ensure created_at is a string
+      cognito_id: user?.cognito_id ?? '',  // ensure cognito_id is a string
+    };
+  });
+
+  // 3) Resolve all lab fetches
+  const users = await Promise.all(userPromises);
+
+  // Return in structure "UsersResponse" expects
+  return { users };
+};
