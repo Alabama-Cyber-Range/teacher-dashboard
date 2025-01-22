@@ -22,6 +22,7 @@ import {
   listSchools,
   listUsers,
 } from '../graphql/queries';
+import { l, s } from 'vite/dist/node/types.d-aGj9QkWt';
 
 const client = generateClient();
 
@@ -405,4 +406,112 @@ export const get_school_users = async (schoolId: number): Promise<UsersResponse>
 
   // Return in structure "UsersResponse" expects
   return { users };
+};
+
+export const associate_user_with_school = async (userId: number, schoolId: number): Promise<void> => {
+  await client.graphql({
+    query: `
+      mutation AssociateUserWithSchool($input: SchoolUserAssociationInput!) {
+        createSchoolUserAssociation(input: $input) {
+          id
+        }
+      }
+    `,
+    variables: {
+      input: {
+        user_id: userId,
+        school_id: schoolId,
+      },
+    },
+  });
+};
+
+export const associate_lab_with_school = async (labId: number, schoolId: number): Promise<void> => {
+  await client.graphql({
+    query: `
+      mutation AssociateLabWithSchool($input: SchoolLabAssociationInput!) {
+        createSchoolLabAssociation(input: $input) {
+          id
+        }
+      }
+    `,
+    variables: {
+      input: {
+        lab_id: labId,
+        school_id: schoolId,
+      },
+    },
+  });
+};
+
+export const associate_lab_with_learning_path = async (labId: number, learningPathId: number): Promise<void> => {
+  await client.graphql({
+    query: `
+      mutation AssociateLabWithLearningPath($input: LearningPathLabAssociationInput!) {
+        createLearningPathLabAssociation(input: $input) {
+          id
+        }
+      }
+    `,
+    variables: {
+      input: {
+        lab_id: labId,
+        learning_path_id: learningPathId,
+      },
+    },
+  });
+};
+
+export const disassociate_lab_from_learning_path = async (labId: number, learningPathId: number): Promise<void> => {
+  await client.graphql({
+    query: `
+      mutation DisassociateLabFromLearningPath($input: ModelIDInput!) {
+        deleteLearningPathLabAssociation(input: $input) {
+          id
+        }
+      }
+    `,
+    variables: {
+      input: {
+        id: labId,
+        learning_path_id: learningPathId,
+      },
+    },
+  });
+};
+
+export const disassociate_lab_from_school = async (labId: number, schoolId: number): Promise<void> => {
+  await client.graphql({
+    query: `
+      mutation DisassociateLabFromSchool($input: ModelIDInput!) {
+        deleteSchoolLabAssociation(input: $input) {
+          id
+        }
+      }
+    `,
+    variables: {
+      input: {
+        id: labId,
+        school_id: schoolId,
+      },
+    },
+  });
+};
+
+export const disassociate_user_from_school = async (userId: number, schoolId: number): Promise<void> => {
+  await client.graphql({
+    query: `
+      mutation DisassociateUserFromSchool($input: ModelIDInput!) {
+        deleteSchoolUserAssociation(input: $input) {
+          id
+        }
+      }
+    `,
+    variables: {
+      input: {
+        id: userId,
+        school_id: schoolId,
+      },
+    },
+  });
 };
