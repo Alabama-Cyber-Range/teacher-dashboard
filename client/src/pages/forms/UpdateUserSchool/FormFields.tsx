@@ -3,6 +3,9 @@ import {
   Flex,
   SelectField,
 } from "@aws-amplify/ui-react";
+import { useSchools } from "../../../hooks/useSchools";
+import { useEffect } from "react";
+import { School } from '@admin-dashboard/contracts/School';
 
 interface Fields {
   school: string;
@@ -17,6 +20,9 @@ interface FormFieldProps {
 const FormFields = (props: FormFieldProps) => {
   const [titleHasError, setTitleHasError] = React.useState(true);
   const { values, formFieldChange, formFieldIsValid } = props;
+  const data = useSchools();
+    useEffect(() => {}
+    , [data]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     formFieldChange(e.target.name, e.target.value);
@@ -27,6 +33,7 @@ const FormFields = (props: FormFieldProps) => {
     setTitleHasError(isEmpty);
     formFieldIsValid(e.target.name, !isEmpty);
   };
+
   return (
     <>
       <Flex direction="column" width="100%">
@@ -43,12 +50,12 @@ const FormFields = (props: FormFieldProps) => {
         errorMessage="Please select a school"
         descriptiveText="Select school"
         >
-          <option value="apple">Apple</option>
-          <option value="banana">Banana</option>
-          <option value="orange">Orange</option>
-          <option value="pineapple">Pineapple</option>
-          <option value="kiwi">Kiwi</option>
-          <option value="tangerine">Tangerine</option>
+        {data?.schools?.schools?.sort((a, b) => a.name.localeCompare(b.name))?.map((item: School) => {
+          return (
+            <option key={item.id} value={item.id}>{item.name}</option>
+          );
+        }
+        )}
       </SelectField>
 
       </Flex>
