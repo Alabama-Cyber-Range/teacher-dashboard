@@ -1,11 +1,13 @@
-import { View, Flex, Text, useTheme } from "@aws-amplify/ui-react";
+import { View, Flex, Text, Button, useTheme } from "@aws-amplify/ui-react";
 import { useParams } from 'react-router-dom';
 import SchoolsTable from './SchoolsTable';
 import LearningPathsTable from "./LearningPathsTable";
 import { useLab } from "../../hooks/useLab";
+import { useNavigate } from "react-router-dom";
 
 const Module = () => {
     const { tokens } = useTheme();
+    const navigate = useNavigate();
     const { moduleId = '' } = useParams<{ moduleId: string }>()
     const lab = useLab(String(moduleId));
     return (
@@ -29,6 +31,7 @@ const Module = () => {
                     <Text variation="primary" fontWeight={600} fontSize="18px">
                         Schools
                     </Text>
+                    <Button onClick={() => navigate("/update-module-school")}>Associate School</Button>
                     <SchoolsTable labId={Number(moduleId)} />
                 </View>
                 <View paddingTop="1rem" paddingBottom="1rem">
