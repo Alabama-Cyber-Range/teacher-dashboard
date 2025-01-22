@@ -1,9 +1,11 @@
-import { View, Flex, Text, useTheme } from "@aws-amplify/ui-react";
+import { View, Flex, Text, Button, useTheme } from "@aws-amplify/ui-react";
 import { useParams } from 'react-router-dom';
 import { useTargetUser } from "../../hooks/useTargetUser";
 import { useTargetUserSchool } from "../../hooks/useTargetUserSchool";
+import { useNavigate } from "react-router-dom";
 
 const User = () => {
+    const navigate = useNavigate();
     const { tokens } = useTheme();
     const { userId = '' } = useParams<{ userId: string }>()
     const user = useTargetUser(userId);
@@ -40,6 +42,7 @@ const User = () => {
                         </div>
                     </Flex>
                 </View>
+                <Button onClick={() => navigate("/update-user-school")}>Update School</Button>
             </View>
         </>
     );

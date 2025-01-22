@@ -286,8 +286,8 @@ export type DeleteRolesInput = {
 
 export type CreateSchool_user_associationsInput = {
   school_id?: number | null,
-  id?: number | null,
-  created_at: string,
+  // id?: number | null,
+  // created_at: string,
   user_id?: number | null,
 };
 

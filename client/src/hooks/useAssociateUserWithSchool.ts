@@ -1,23 +1,10 @@
-import { useTargetUser } from "./useTargetUser";
+import { associate_user_with_school } from '../services/api';
+import { useMutation } from '@tanstack/react-query';
 
 export const useAssociateUserWithSchool = (userId: string, schoolId: string) => {
-    const userResponse = useTargetUser(userId);
-    const user = userResponse ? userResponse.data : undefined;
-    const { data: school } = useGetSchoolByUser(user?.id);
-
-    const associateUserWithSchool = async () => {
-        if (user && school) {
-        await API.graphql({
-            query: mutations.updateUser,
-            variables: {
-            input: {
-                id: user.id,
-                schoolId: school.id,
-            },
-            },
-        });
-        }
-    };
-
-    return { associateUserWithSchool };
-    }
+  const { data: school_user_association } = useMutation({
+    mutationKey: ['associate_user_with_school', userId, schoolId],
+    mutationFn: () => associate_user_with_school(Number(userId), Number(schoolId)),
+  });
+  return school_user_association;
+};
