@@ -13,6 +13,9 @@ import Profile from "./pages/profile";
 import Forms from "./pages/forms";
 import EditForm from "./pages/forms/EditForm";
 
+import AddSchoolForm from "./pages/forms/AddSchool";
+import AddLearningPathForm from "./pages/forms/AddLearningPath";
+
 import Modules from "./pages/modules";
 import Users from "./pages/users";
 import LearningPaths from "./pages/learningPaths";
@@ -110,6 +113,9 @@ export default function App() {
                 <Route index element={<Dashboard />} loader={protectedLoader} />
                 <Route path="forms" element={<Forms />} loader={protectedLoader} />
                 <Route path="edit-form" element={<EditForm />} loader={protectedLoader} />
+                <Route path="add-school" element={<AddSchoolForm />} loader={protectedLoader} />
+                <Route path="add-learning-path" element={<AddLearningPathForm />} loader={protectedLoader} />
+
                 <Route path="profile" element={<Profile />} loader={protectedLoader} />
                 <Route path="modules" element={<Modules />} loader={protectedLoader} />
                 <Route path="users" element={<Users />} loader={protectedLoader} />

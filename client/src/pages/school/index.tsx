@@ -4,7 +4,7 @@ import ModulesTable from './ModulesTable';
 import UsersTable from "./UsersTable";
 import { useSchool } from "../../hooks/useSchool";
 
-const Module = () => {
+const School = () => {
     const { tokens } = useTheme();
     const { schoolId = '' } = useParams<{ schoolId: string }>()
     const school = useSchool(String(schoolId));
@@ -41,4 +41,4 @@ const Module = () => {
     );
 };
 
-export default Module;
+export default School;

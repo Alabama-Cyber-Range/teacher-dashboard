@@ -31,6 +31,7 @@ const SchoolsTable = () => {
           <TableRow>
             <TableCell as="th">Name</TableCell>
             <TableCell as="th"></TableCell>
+            <TableCell as="th"></TableCell>
           </TableRow>
         </TableHead>
 
@@ -45,6 +46,9 @@ const SchoolsTable = () => {
                 </TableCell>
                 <TableCell>
                   <Button onClick={() => navigate("/edit-form")}>Edit</Button>
+                </TableCell>
+                <TableCell>
+                  <Button>Delete</Button>
                 </TableCell>
               </TableRow>
             );

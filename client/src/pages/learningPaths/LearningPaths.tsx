@@ -1,11 +1,21 @@
-import { Heading, View } from "@aws-amplify/ui-react";
+import {
+  Heading,
+  View,
+  Button,
+  Flex,
+} from "@aws-amplify/ui-react";
 import LearningPathsTable from "./LearningPathsTable";
+import { useNavigate } from "react-router-dom";
 
 const LearningPaths = () => {
+  const navigate = useNavigate();
   return (
     <>
         <View padding="1rem">
-            <Heading level={2}>Learning Paths</Heading>
+        <Flex justifyContent="space-between">
+                <Heading level={1}>Learning Path</Heading>
+                <Button onClick={() => navigate("/add-learning-path")}>Add Learning Path</Button>
+            </Flex>
         </View>
         <LearningPathsTable />
     </>
