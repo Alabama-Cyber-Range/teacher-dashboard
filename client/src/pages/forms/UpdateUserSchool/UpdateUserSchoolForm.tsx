@@ -43,7 +43,7 @@ const UpdateUserSchoolForm = () => {
     });
   };
 
-  const formFieldIsValid = (school: string, valid: boolean) => {
+    const formFieldIsValid = (valid: boolean) => {
     setIsDisabled(!valid);
   };
 
