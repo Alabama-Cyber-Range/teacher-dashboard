@@ -2,37 +2,12 @@ import { useState } from "react";
 import { View, Flex, Heading, useTheme } from "@aws-amplify/ui-react";
 import FormFields from "./FormFields";
 import FormActions from "./FormActions";
-// import { useAssociateUserWithSchool } from "../../../hooks/useAssociateUserWithSchool";
 import { associate_user_with_school } from "../../../services/api";
 import { useParams } from 'react-router-dom';
-import { useEffect } from "react";
-
-/// mock api request
 
 interface FormData {
   school: string;
 }
-
-// const postForm = (data: FormData): Promise<FormData> =>
-//   new Promise((resolve, reject) => {
-//     if (!data.school) {
-//       reject(new Error("Not all information provided"));
-//     }
-//     setTimeout(() => resolve(data), 750);
-//   });
-
-// const postForm = (data: FormData, userId: string): Promise<FormData> =>
-//   new Promise((resolve, reject) => {
-//     if (!data.school) {
-//       reject(new Error("Not all information provided"));
-//     }
-//     setTimeout(() => resolve(data), 750);
-//     useAssociateUserWithSchool(userId, data.school);
-//   });
-
-// const postForm = (userId: string, schoolId: string) => {
-//   associate_user_with_school(Number(userId), Number(schoolId));
-// };
 
 const initialValues = {
   school: "select a school",
@@ -42,7 +17,6 @@ const UpdateUserSchoolForm = () => {
   const [values, setValues] = useState(initialValues);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
-  // const [isValid, setIsValid] = useState<boolean>(false);
 
   const { tokens } = useTheme();
   const { userId = '' } = useParams<{ userId: string }>()
@@ -52,12 +26,9 @@ const UpdateUserSchoolForm = () => {
 
     const doPostForm = async (data: FormData): Promise<void> => {
       try {
-        console.log(data.school);
-        console.log(userId);
-      const result = associate_user_with_school(Number(userId), Number(data.school));
+      associate_user_with_school(Number(userId), Number(data.school));
       setIsLoading(false);
       } catch (error) {
-      console.log(error);
       setIsLoading(false);
       }
     };
@@ -74,7 +45,6 @@ const UpdateUserSchoolForm = () => {
 
   const formFieldIsValid = (name: string, valid: boolean) => {
     setIsDisabled(!valid);
-    // console.log(name);
   };
 
   return (
