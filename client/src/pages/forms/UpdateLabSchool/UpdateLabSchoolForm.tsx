@@ -2,20 +2,12 @@ import { useState } from "react";
 import { View, Flex, Heading, useTheme } from "@aws-amplify/ui-react";
 import FormFields from "./FormFields";
 import FormActions from "./FormActions";
-
-/// mock api request
+import { associate_lab_with_school } from "../../../services/api";
+import { useParams } from 'react-router-dom';
 
 interface FormData {
   school: string;
 }
-
-const postForm = (data: FormData): Promise<FormData> =>
-  new Promise((resolve, reject) => {
-    if (!data.school) {
-      reject(new Error("Not all information provided"));
-    }
-    setTimeout(() => resolve(data), 750);
-  });
 
 const initialValues = {
   school: "select a school",
@@ -25,20 +17,18 @@ const UpdateLabSchoolForm = () => {
   const [values, setValues] = useState(initialValues);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
-  // const [isValid, setIsValid] = useState<boolean>(false);
 
   const { tokens } = useTheme();
+  const { moduleId = '' } = useParams<{ moduleId: string }>()
 
   const saveData = () => {
     setIsLoading(true);
 
     const doPostForm = async (data: FormData): Promise<void> => {
       try {
-      const result: FormData = await postForm(data);
-      console.log(result);
+      associate_lab_with_school(Number(moduleId), Number(data.school));
       setIsLoading(false);
       } catch (error) {
-      console.log(error);
       setIsLoading(false);
       }
     };
@@ -53,9 +43,8 @@ const UpdateLabSchoolForm = () => {
     });
   };
 
-  const formFieldIsValid = (name: string, valid: boolean) => {
+  const formFieldIsValid = (school: string, valid: boolean) => {
     setIsDisabled(!valid);
-    // console.log(name);
   };
 
   return (

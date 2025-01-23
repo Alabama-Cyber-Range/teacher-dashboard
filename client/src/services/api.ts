@@ -22,8 +22,14 @@ import {
   listSchools,
   listUsers,
 } from '../graphql/queries';
-import { createSchool_user_associations } from '../graphql/mutations';
-import { CreateSchool_user_associationsInput } from '../API';
+import {
+  createSchool_user_associations,
+  createSchool_lab_associations,
+} from '../graphql/mutations';
+import {
+  CreateSchool_user_associationsInput,
+  CreateSchool_lab_associationsInput,
+} from '../API';
 
 const client = generateClient();
 
@@ -417,6 +423,18 @@ export const associate_user_with_school = async (userId: number, schoolId: numbe
 
   await client.graphql({
     query: createSchool_user_associations,
+    variables: { input },
+  });
+};
+
+export const associate_lab_with_school = async (labId: number, schoolId: number): Promise<void> => {
+  const input: CreateSchool_lab_associationsInput = {
+    lab_id: labId,
+    school_id: schoolId,
+  };
+
+  await client.graphql({
+    query: createSchool_lab_associations,
     variables: { input },
   });
 };

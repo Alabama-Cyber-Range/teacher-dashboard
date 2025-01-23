@@ -31,7 +31,7 @@ const Module = () => {
                     <Text variation="primary" fontWeight={600} fontSize="18px">
                         Schools
                     </Text>
-                    <Button onClick={() => navigate("/update-module-school")}>Associate School</Button>
+                    <Button onClick={() => navigate(`/update-module-school/${moduleId}`)}>Associate School</Button>
                     <SchoolsTable labId={Number(moduleId)} />
                 </View>
                 <View paddingTop="1rem" paddingBottom="1rem">
