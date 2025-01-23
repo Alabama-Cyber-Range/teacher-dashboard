@@ -12,6 +12,7 @@ import { useLabSchools } from '../../hooks/useLabSchools';
 import { School } from '@admin-dashboard/contracts/School';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { unassociate_lab_with_school } from "../../services/api"
 
 export interface LabData {
   labId: number;
@@ -49,7 +50,10 @@ const SchoolsTable = (props: LabData) => {
                   >{item.name}
                 </TableCell>
                 <TableCell>
-                  <Button onClick={() => navigate("/edit-form")}>Edit</Button>
+                  <Button
+                    onClick={() => {unassociate_lab_with_school(labId, Number(item.id))}}
+                    >Unassociate
+                  </Button>
                 </TableCell>
               </TableRow>
             );

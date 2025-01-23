@@ -17,6 +17,7 @@ import AddSchoolForm from "./pages/forms/AddSchool";
 import AddLearningPathForm from "./pages/forms/AddLearningPath";
 import UpdateUserSchoolForm from "./pages/forms/UpdateUserSchool";
 import UpdateLabSchoolForm from "./pages/forms/UpdateLabSchool";
+import UpdateLabLearningPathForm from "./pages/forms/UpdateLabLearningPath";
 
 import Modules from "./pages/modules";
 import Users from "./pages/users";
@@ -119,6 +120,7 @@ export default function App() {
                 <Route path="add-learning-path" element={<AddLearningPathForm />} loader={protectedLoader} />
                 <Route path="update-user-school/:userId" element={<UpdateUserSchoolForm />} loader={protectedLoader} />
                 <Route path="update-module-school/:moduleId" element={<UpdateLabSchoolForm />} loader={protectedLoader} />
+                <Route path="update-module-learning-path/:moduleId" element={<UpdateLabLearningPathForm />} loader={protectedLoader} />
 
                 <Route path="profile" element={<Profile />} loader={protectedLoader} />
                 <Route path="modules" element={<Modules />} loader={protectedLoader} />

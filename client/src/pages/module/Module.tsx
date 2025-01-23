@@ -38,6 +38,7 @@ const Module = () => {
                     <Text variation="primary" fontWeight={600} fontSize="18px">
                         Learning Paths
                     </Text>
+                    <Button onClick={() => navigate(`/update-module-learning-path/${moduleId}`)}>Associate Learning Path</Button>
                     <LearningPathsTable labId={Number(moduleId)} />
                 </View>
             </View>

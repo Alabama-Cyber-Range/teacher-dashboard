@@ -12,6 +12,7 @@ import { useLabLearningPaths } from '../../hooks/useLabLearningPaths';
 import { LearningPath } from '@admin-dashboard/contracts/LearningPath';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { unassociate_lab_with_learning_path } from "../../services/api"
 
 export interface LabData {
   labId: number;
@@ -49,7 +50,10 @@ const LearningPathsTable = (props: LabData) => {
                   >{item.name}
                 </TableCell>
                 <TableCell>
-                  <Button onClick={() => navigate("/edit-form")}>Edit</Button>
+                  <Button
+                    onClick={() => {unassociate_lab_with_learning_path(labId, Number(item.id))}}
+                    >Unassociate
+                  </Button>
                 </TableCell>
               </TableRow>
             );

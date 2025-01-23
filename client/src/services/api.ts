@@ -25,10 +25,16 @@ import {
 import {
   createSchool_user_associations,
   createSchool_lab_associations,
+  createLearning_path_lab_associations,
+  deleteSchool_lab_associations,
+  deleteLearning_path_lab_associations
 } from '../graphql/mutations';
 import {
   CreateSchool_user_associationsInput,
   CreateSchool_lab_associationsInput,
+  CreateLearning_path_lab_associationsInput,
+  DeleteSchool_lab_associationsInput,
+  DeleteLearning_path_lab_associationsInput
 } from '../API';
 
 const client = generateClient();
@@ -435,6 +441,81 @@ export const associate_lab_with_school = async (labId: number, schoolId: number)
 
   await client.graphql({
     query: createSchool_lab_associations,
+    variables: { input },
+  });
+};
+
+export const unassociate_lab_with_school = async (labId: number, schoolId: number): Promise<void> => {
+  const lab = get_lab(labId);
+  const lab_id = Number((await lab).lab.id);
+
+  const associationResp = await client.graphql({
+    query: listSchool_lab_associations,
+    variables: {
+      filter: {
+        lab_id: { eq: lab_id },
+        school_id: { eq: schoolId },
+      },
+    },
+  });
+
+  // Extract items safely
+  const associations = associationResp?.data?.listSchool_lab_associations?.items ?? [];
+
+  if (!associations[0]) {
+    throw new Error('No associations found for the given lab ID');
+  }
+
+  const input: DeleteSchool_lab_associationsInput = {
+    id: associations[0].id,
+  };
+
+  await client.graphql({
+    query: deleteSchool_lab_associations,
+    variables: { input },
+  });
+};
+
+export const associate_lab_with_learning_path = async (labId: number, learningPathId: number): Promise<void> => {
+  const input: CreateLearning_path_lab_associationsInput = {
+    lab_id: labId,
+    learning_path_id: learningPathId,
+  };
+
+  await client.graphql({
+    query: createLearning_path_lab_associations,
+    variables: { input },
+  });
+};
+
+export const unassociate_lab_with_learning_path = async (labId: number, learningPathId: number): Promise<void> => {
+  const lab = get_lab(labId);
+  const lab_id = Number((await lab).lab.id);
+
+  const associationResp = await client.graphql({
+    query: listLearning_path_lab_associations,
+    variables: {
+      filter: {
+        lab_id: { eq: lab_id },
+        learning_path_id: { eq: learningPathId },
+      },
+    },
+  });
+
+  // Extract items safely
+  const associations = associationResp?.data?.listLearning_path_lab_associations?.items ?? [];
+  console.log(associations);
+
+  if (!associations[0]) {
+    throw new Error('No associations found for the given lab ID');
+  }
+
+  const input: DeleteLearning_path_lab_associationsInput = {
+    id: associations[0].id,
+  };
+
+  await client.graphql({
+    query: deleteLearning_path_lab_associations,
     variables: { input },
   });
 };
