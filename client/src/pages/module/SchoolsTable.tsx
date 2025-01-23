@@ -6,7 +6,6 @@ import {
   TableHead,
   TableRow,
   Button,
-  Flex,
 } from "@aws-amplify/ui-react";
 
 import { useLabSchools } from '../../hooks/useLabSchools';
@@ -14,6 +13,7 @@ import { School } from '@admin-dashboard/contracts/School';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { unassociate_lab_with_school } from "../../services/api"
+import { useQueryClient } from "@tanstack/react-query";
 
 export interface LabData {
   labId: number;
@@ -26,6 +26,15 @@ const SchoolsTable = (props: LabData) => {
     useEffect(() => {}
     , [data]);
   const navigate = useNavigate();
+
+  const queryClient = useQueryClient()
+
+  const handleDelete = async (schoolId: number) => {
+    event?.preventDefault
+    await unassociate_lab_with_school(labId, schoolId);
+    await queryClient.invalidateQueries({ queryKey: ['labSchools', labId] })
+  };
+
   return (
     <>
       <Table
@@ -52,7 +61,7 @@ const SchoolsTable = (props: LabData) => {
                 </TableCell>
                 <TableCell align="right" style={{ display: "flex", justifyContent: "flex-end" }}>
                   <Button
-                    onClick={() => {unassociate_lab_with_school(labId, Number(item.id))}}
+                    onClick={() => handleDelete(Number(item.id))}
                     >Unassociate
                   </Button>
                 </TableCell>
