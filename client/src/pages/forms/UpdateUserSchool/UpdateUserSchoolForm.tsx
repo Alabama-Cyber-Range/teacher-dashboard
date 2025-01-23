@@ -2,6 +2,10 @@ import { useState } from "react";
 import { View, Flex, Heading, useTheme } from "@aws-amplify/ui-react";
 import FormFields from "./FormFields";
 import FormActions from "./FormActions";
+// import { useAssociateUserWithSchool } from "../../../hooks/useAssociateUserWithSchool";
+import { associate_user_with_school } from "../../../services/api";
+import { useParams } from 'react-router-dom';
+import { useEffect } from "react";
 
 /// mock api request
 
@@ -9,13 +13,26 @@ interface FormData {
   school: string;
 }
 
-const postForm = (data: FormData): Promise<FormData> =>
-  new Promise((resolve, reject) => {
-    if (!data.school) {
-      reject(new Error("Not all information provided"));
-    }
-    setTimeout(() => resolve(data), 750);
-  });
+// const postForm = (data: FormData): Promise<FormData> =>
+//   new Promise((resolve, reject) => {
+//     if (!data.school) {
+//       reject(new Error("Not all information provided"));
+//     }
+//     setTimeout(() => resolve(data), 750);
+//   });
+
+// const postForm = (data: FormData, userId: string): Promise<FormData> =>
+//   new Promise((resolve, reject) => {
+//     if (!data.school) {
+//       reject(new Error("Not all information provided"));
+//     }
+//     setTimeout(() => resolve(data), 750);
+//     useAssociateUserWithSchool(userId, data.school);
+//   });
+
+// const postForm = (userId: string, schoolId: string) => {
+//   associate_user_with_school(Number(userId), Number(schoolId));
+// };
 
 const initialValues = {
   school: "select a school",
@@ -28,14 +45,16 @@ const UpdateUserSchoolForm = () => {
   // const [isValid, setIsValid] = useState<boolean>(false);
 
   const { tokens } = useTheme();
+  const { userId = '' } = useParams<{ userId: string }>()
 
   const saveData = () => {
     setIsLoading(true);
 
     const doPostForm = async (data: FormData): Promise<void> => {
       try {
-      const result: FormData = await postForm(data);
-      console.log(result);
+        console.log(data.school);
+        console.log(userId);
+      const result = associate_user_with_school(Number(userId), Number(data.school));
       setIsLoading(false);
       } catch (error) {
       console.log(error);

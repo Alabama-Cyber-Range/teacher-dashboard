@@ -42,7 +42,7 @@ const User = () => {
                         </div>
                     </Flex>
                 </View>
-                <Button onClick={() => navigate("/update-user-school")}>Update School</Button>
+                <Button onClick={() => navigate(`/update-user-school/${userId}`)}>Update School</Button>
             </View>
         </>
     );

@@ -4,9 +4,9 @@
 
 export type CreateUsersInput = {
   first_name: string,
-  created_at: string,
+  // created_at: String!
   last_name: string,
-  id?: number | null,
+  // id: Int
   email: string,
 };
 
@@ -69,8 +69,8 @@ export type DeleteUsersInput = {
 
 export type CreateSchool_lab_associationsInput = {
   school_id?: number | null,
-  id?: number | null,
-  created_at: string,
+  // id: Int
+  // created_at: String!
   lab_id?: number | null,
 };
 
@@ -115,9 +115,9 @@ export type DeleteSchool_lab_associationsInput = {
 
 export type CreateLabsInput = {
   cloudshare_training_id: string,
-  created_at: string,
+  // created_at: String!
   description: string,
-  id?: number | null,
+  // id: Int
   name: string,
 };
 
@@ -154,8 +154,8 @@ export type DeleteLabsInput = {
 
 export type CreateLearning_path_lab_associationsInput = {
   learning_path_id?: number | null,
-  created_at: string,
-  id?: number | null,
+  // created_at: String!
+  // id: Int
   lab_id?: number | null,
 };
 
@@ -189,8 +189,8 @@ export type DeleteLearning_path_lab_associationsInput = {
 
 export type CreateUser_role_associationsInput = {
   role_id?: number | null,
-  id?: number | null,
-  created_at: string,
+  // id: Int
+  // created_at: String!
   user_id?: number | null,
 };
 
@@ -224,8 +224,6 @@ export type DeleteUser_role_associationsInput = {
 
 export type CreateSchoolsInput = {
   name: string,
-  id?: number | null,
-  created_at: string,
 };
 
 export type Schools = {
@@ -255,8 +253,6 @@ export type DeleteSchoolsInput = {
 
 export type CreateRolesInput = {
   name: string,
-  id?: number | null,
-  created_at: string,
 };
 
 export type Roles = {
@@ -286,8 +282,8 @@ export type DeleteRolesInput = {
 
 export type CreateSchool_user_associationsInput = {
   school_id?: number | null,
-  // id?: number | null,
-  // created_at: string,
+  // id: Int
+  // created_at: String!
   user_id?: number | null,
 };
 
@@ -321,8 +317,8 @@ export type DeleteSchool_user_associationsInput = {
 
 export type CreateLearning_pathsInput = {
   name: string,
-  created_at: string,
-  id?: number | null,
+  // created_at: String!
+  // id: Int
   description: string,
 };
 

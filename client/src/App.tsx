@@ -117,7 +117,7 @@ export default function App() {
                 <Route path="edit-form" element={<EditForm />} loader={protectedLoader} />
                 <Route path="add-school" element={<AddSchoolForm />} loader={protectedLoader} />
                 <Route path="add-learning-path" element={<AddLearningPathForm />} loader={protectedLoader} />
-                <Route path="update-user-school" element={<UpdateUserSchoolForm />} loader={protectedLoader} />
+                <Route path="update-user-school/:userId" element={<UpdateUserSchoolForm />} loader={protectedLoader} />
                 <Route path="update-module-school" element={<UpdateLabSchoolForm />} loader={protectedLoader} />
 
                 <Route path="profile" element={<Profile />} loader={protectedLoader} />
