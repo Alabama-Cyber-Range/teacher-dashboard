@@ -504,7 +504,6 @@ export const unassociate_lab_with_learning_path = async (labId: number, learning
 
   // Extract items safely
   const associations = associationResp?.data?.listLearning_path_lab_associations?.items ?? [];
-  console.log(associations);
 
   if (!associations[0]) {
     throw new Error('No associations found for the given lab ID');

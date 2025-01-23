@@ -6,6 +6,7 @@ import {
   TableHead,
   TableRow,
   Button,
+  Flex,
 } from "@aws-amplify/ui-react";
 
 import { useLabSchools } from '../../hooks/useLabSchools';
@@ -36,7 +37,7 @@ const SchoolsTable = (props: LabData) => {
         <TableHead>
           <TableRow>
             <TableCell as="th">Name</TableCell>
-            <TableCell as="th"></TableCell>
+            <TableCell as="th" align="right"></TableCell>
           </TableRow>
         </TableHead>
 
@@ -49,7 +50,7 @@ const SchoolsTable = (props: LabData) => {
                   style={{ cursor: "pointer" }}
                   >{item.name}
                 </TableCell>
-                <TableCell>
+                <TableCell align="right" style={{ display: "flex", justifyContent: "flex-end" }}>
                   <Button
                     onClick={() => {unassociate_lab_with_school(labId, Number(item.id))}}
                     >Unassociate

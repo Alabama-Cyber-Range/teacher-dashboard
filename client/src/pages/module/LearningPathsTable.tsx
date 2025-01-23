@@ -6,6 +6,7 @@ import {
   TableHead,
   TableRow,
   Button,
+  Flex,
 } from "@aws-amplify/ui-react";
 
 import { useLabLearningPaths } from '../../hooks/useLabLearningPaths';
@@ -36,7 +37,7 @@ const LearningPathsTable = (props: LabData) => {
         <TableHead>
           <TableRow>
             <TableCell as="th">Name</TableCell>
-            <TableCell as="th"></TableCell>
+            <TableCell as="th" align="right"></TableCell>
           </TableRow>
         </TableHead>
 
@@ -49,9 +50,8 @@ const LearningPathsTable = (props: LabData) => {
                   style={{ cursor: "pointer" }}
                   >{item.name}
                 </TableCell>
-                <TableCell>
-                  <Button
-                    onClick={() => {unassociate_lab_with_learning_path(labId, Number(item.id))}}
+                <TableCell align="right" style={{ display: "flex", justifyContent: "flex-end" }}>
+                  <Button onClick={() => {unassociate_lab_with_learning_path(labId, Number(item.id))}}
                     >Unassociate
                   </Button>
                 </TableCell>
