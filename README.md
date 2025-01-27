@@ -1,4 +1,4 @@
-# Amplify UI Dashboard
+# Teacher UI Dashboard
 
 A React Dashboard Admin Template built on top of Amplify UI.
 
