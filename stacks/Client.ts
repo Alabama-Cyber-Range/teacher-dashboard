@@ -35,7 +35,7 @@ export function Client({ stack }: StackContext) {
   });
 
   const cognitoDomain = auth.cdk.userPool.addDomain("cognitoDomain", {
-    cognitoDomain: { domainPrefix: `alabama-cyber-range-${stack.stage}-client` },
+    cognitoDomain: { domainPrefix: `alabama-cyber-range-${stack.stage}-teacher` },
   });
 
   stack.addOutputs({

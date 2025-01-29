@@ -12,6 +12,7 @@ import Dashboard from "./pages/dashboard";
 import Profile from "./pages/profile";
 import Forms from "./pages/forms";
 import EditForm from "./pages/forms/EditForm";
+import Help from "./pages/help";
 
 import AddSchoolForm from "./pages/forms/AddSchool";
 import AddLearningPathForm from "./pages/forms/AddLearningPath";
@@ -121,7 +122,7 @@ export default function App() {
                 <Route path="update-user-school/:userId" element={<UpdateUserSchoolForm />} loader={protectedLoader} />
                 <Route path="update-module-school/:moduleId" element={<UpdateLabSchoolForm />} loader={protectedLoader} />
                 <Route path="update-module-learning-path/:moduleId" element={<UpdateLabLearningPathForm />} loader={protectedLoader} />
-
+                <Route path="help" element={<Help />} loader={protectedLoader} />
                 <Route path="profile" element={<Profile />} loader={protectedLoader} />
                 <Route path="modules" element={<Modules />} loader={protectedLoader} />
                 <Route path="users" element={<Users />} loader={protectedLoader} />
