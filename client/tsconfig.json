@@ -1,29 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
-    "paths": {
-      "@admin-dashboard/contracts/*": ["../services/contracts/src/*"]
-    }
+    "target": "ES6",                          // Set the JavaScript version to ES6
+    "lib": ["dom", "dom.iterable", "esnext"], // Include libraries for DOM and ES features
+    "allowJs": true,                          // Allow JavaScript files to be compiled
+    "skipLibCheck": true,                     // Skip type checking of declaration files
+    "esModuleInterop": true,                  // Enable compatibility with ES modules
+    "allowSyntheticDefaultImports": true,     // Allow default imports from modules with no default export
+    "strict": true,                           // Enable strict type-checking options
+    "forceConsistentCasingInFileNames": true, // Ensure consistent casing in file names
+    "noFallthroughCasesInSwitch": true,       // Report errors for fallthrough cases in switch statements
+    "module": "ESNext",                       // Specify module code generation
+    "moduleResolution": "node",               // Use Node.js module resolution strategy
+    "resolveJsonModule": true,                // Allow importing JSON modules
+    "isolatedModules": true,                  // Ensure each file can be safely transpiled without relying on other imports
+    "noEmit": true,                           // Do not emit compiled files
+    "jsx": "react-jsx"                        // Support JSX syntax in React
   },
-  "include": ["src", "./vite-env.d.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src"],                         // Include all files in the 'src' directory
+  "exclude": ["node_modules"]                 // Exclude the 'node_modules' directory
 }

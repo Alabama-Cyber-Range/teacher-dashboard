@@ -58,4 +58,12 @@ export const appNavs = [
     title: "Users",
     to: "/users",
   },
+  {
+    eventKey: "instructions",
+    title: "Instructions",
+    to: "/instructions",
+  },
+
+
 ];
+
