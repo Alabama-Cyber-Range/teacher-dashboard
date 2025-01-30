@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Routes, Route, Link, Navigate, Outlet } from 'react-router-dom';
 import '@aws-amplify/ui-react/styles.css';
 import './App.css';
 import { ThemeProvider, Authenticator } from '@aws-amplify/ui-react';
@@ -26,8 +26,6 @@ import LearningPath from './pages/learningPath';
 import School from './pages/school';
 import User from './pages/user';
 import Module from './pages/module';
-
-import Instructions from './pages/Instructions'; // Import the component
 
 import { Amplify } from 'aws-amplify';
 import { getCurrentUser } from 'aws-amplify/auth';
@@ -90,6 +88,40 @@ const formFields = {
   },
 };
 
+// Placeholder components for nested routes
+function LinuxSkills() {
+  return <div><h3>Linux Skills</h3><p>Linux Skills content goes here.</p></div>;
+}
+
+function KaliTop10() {
+  return <div><h3>Kali Top 10</h3><p>Kali Top 10 content goes here.</p></div>;
+}
+
+function WindowsDefense() {
+  return <div><h3>Windows Defense</h3><p>Windows Defense content goes here.</p></div>;
+}
+
+function PurpleTeam() {
+  return <div><h3>Purple Team</h3><p>Purple Team content goes here.</p></div>;
+}
+
+function Instructions() {
+  return (
+    <div>
+      <h2>Instructions</h2>
+      <nav>
+        <ul>
+          <li><Link to="linux-skills">Linux Skills</Link></li>
+          <li><Link to="kali-top-10">Kali Top 10</Link></li>
+          <li><Link to="windows-defense">Windows Defense</Link></li>
+          <li><Link to="purple-team">Purple Team</Link></li>
+        </ul>
+      </nav>
+      <Outlet />
+    </div>
+  );
+}
+
 export default function App() {
   const [isHelpVisible, setIsHelpVisible] = useState(false);
 
@@ -107,54 +139,21 @@ export default function App() {
         <Authenticator hideSignUp={true} formFields={formFields}>
           <AuthProvider>
             <div>
-              {/* Help Button */}
               <button onClick={toggleHelp}>{isHelpVisible ? 'Hide Help' : 'Show Help'}</button>
-
-              {/* Conditionally render the help text */}
-              {isHelpVisible && (
-                <div>
-                  <h2>Teaching Guide Instructions</h2>
-                  <p>Here are the instructions for the teaching guide...</p>
-                </div>
-              )}
-
-              {/* Directions Button */}
-              <button
-                onClick={openDirections}
-                style={{
-                  padding: '10px 20px',
-                  margin: '10px 0',
-                  backgroundColor: '#007BFF',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: '5px',
-                  cursor: 'pointer',
-                }}
-              >
+              {isHelpVisible && <div><h2>Teaching Guide Instructions</h2><p>Here are the instructions for the teaching guide...</p></div>}
+              <button onClick={openDirections} style={{ padding: '10px 20px', margin: '10px 0', backgroundColor: '#007BFF', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
                 View Directions
               </button>
-
-              {/* Routes */}
               <Routes>
                 <Route path="/" element={<Layout />} loader={authLoader}>
                   <Route index element={<Dashboard />} loader={protectedLoader} />
                   <Route path="forms" element={<Forms />} loader={protectedLoader} />
-                  <Route path="edit-form" element={<EditForm />} loader={protectedLoader} />
-                  <Route path="add-school" element={<AddSchoolForm />} loader={protectedLoader} />
-                  <Route path="add-learning-path" element={<AddLearningPathForm />} loader={protectedLoader} />
-                  <Route path="update-user-school/:userId" element={<UpdateUserSchoolForm />} loader={protectedLoader} />
-                  <Route path="update-module-school/:moduleId" element={<UpdateLabSchoolForm />} loader={protectedLoader} />
-                  <Route path="update-module-learning-path/:moduleId" element={<UpdateLabLearningPathForm />} loader={protectedLoader} />
-                  <Route path="profile" element={<Profile />} loader={protectedLoader} />
-                  <Route path="modules" element={<Modules />} loader={protectedLoader} />
-                  <Route path="users" element={<Users />} loader={protectedLoader} />
-                  <Route path="learning-paths" element={<LearningPaths />} loader={protectedLoader} />
-                  <Route path="schools" element={<Schools />} loader={protectedLoader} />
-                  <Route path="modules/:moduleId" element={<Module />} loader={protectedLoader} />
-                  <Route path="users/:userId" element={<User />} loader={protectedLoader} />
-                  <Route path="learning-paths/:pathId" element={<LearningPath />} loader={protectedLoader} />
-                  <Route path="schools/:schoolId" element={<School />} loader={protectedLoader} />
-                  <Route path="instructions" element={<Instructions />} /> {/* Add the new route */}
+                  <Route path="instructions" element={<Instructions />}>
+                    <Route path="linux-skills" element={<LinuxSkills />} />
+                    <Route path="kali-top-10" element={<KaliTop10 />} />
+                    <Route path="windows-defense" element={<WindowsDefense />} />
+                    <Route path="purple-team" element={<PurpleTeam />} />
+                  </Route>
                   <Route path="*" element={<NoMatch />} loader={protectedLoader} />
                 </Route>
               </Routes>
@@ -169,15 +168,8 @@ export default function App() {
 function NoMatch() {
   return (
     <div>
-      <h2>Page Not found</h2>
-      <p>
-        <Link to="/">Go to the home page</Link>
-      </p>
-      {/* Navigation with Instructions Link */}
-      <nav>
-        <ul>
-        </ul>
-      </nav>
+      <h2>Page Not Found</h2>
+      <p><Link to="/">Go to the home page</Link></p>
     </div>
   );
 }
