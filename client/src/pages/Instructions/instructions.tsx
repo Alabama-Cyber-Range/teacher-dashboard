@@ -1,7 +1,8 @@
-import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Heading, View } from "@aws-amplify/ui-react";
+import instructions from "./BruteAndLootInstructions";
+import { Link, Outlet } from "react-router-dom";
 
-export default function Instructions() {
+function Instructions() {
   return (
     <div>
       <h2>Instructions</h2>
@@ -21,7 +22,8 @@ export default function Instructions() {
           </li>
         </ul>
       </nav>
-      <Outlet /> {/* This renders the child route component */}
     </div>
   );
 }
+export default Instructions;
+

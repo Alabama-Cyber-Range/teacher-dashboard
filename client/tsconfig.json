@@ -16,6 +16,6 @@
     "noEmit": true,                           // Do not emit compiled files
     "jsx": "react-jsx"                        // Support JSX syntax in React
   },
-  "include": ["src"],                         // Include all files in the 'src' directory
-  "exclude": ["node_modules"]                 // Exclude the 'node_modules' directory
+  "include": ["src", "./sitevite-env.d.ts"],  // Include all files in the 'src' directory and the specified TypeScript declaration file
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

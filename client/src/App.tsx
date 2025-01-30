@@ -32,6 +32,9 @@ import { getCurrentUser } from 'aws-amplify/auth';
 import { AuthProvider } from './context/authContext';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Instructions from './pages/instructions/Instructions';
+import LinuxSkills from './pages/instructions/LinuxSkills';
+import KaliTop10 from './pages/instructions/KaliTop10';
 
 Amplify.configure({
   Auth: {
@@ -88,40 +91,6 @@ const formFields = {
   },
 };
 
-// Placeholder components for nested routes
-function LinuxSkills() {
-  return <div><h3>Linux Skills</h3><p>Linux Skills content goes here.</p></div>;
-}
-
-function KaliTop10() {
-  return <div><h3>Kali Top 10</h3><p>Kali Top 10 content goes here.</p></div>;
-}
-
-function WindowsDefense() {
-  return <div><h3>Windows Defense</h3><p>Windows Defense content goes here.</p></div>;
-}
-
-function PurpleTeam() {
-  return <div><h3>Purple Team</h3><p>Purple Team content goes here.</p></div>;
-}
-
-function Instructions() {
-  return (
-    <div>
-      <h2>Instructions</h2>
-      <nav>
-        <ul>
-          <li><Link to="linux-skills">Linux Skills</Link></li>
-          <li><Link to="kali-top-10">Kali Top 10</Link></li>
-          <li><Link to="windows-defense">Windows Defense</Link></li>
-          <li><Link to="purple-team">Purple Team</Link></li>
-        </ul>
-      </nav>
-      <Outlet />
-    </div>
-  );
-}
-
 export default function App() {
   const [isHelpVisible, setIsHelpVisible] = useState(false);
 
@@ -145,18 +114,19 @@ export default function App() {
                 View Directions
               </button>
               <Routes>
-                <Route path="/" element={<Layout />} loader={authLoader}>
-                  <Route index element={<Dashboard />} loader={protectedLoader} />
-                  <Route path="forms" element={<Forms />} loader={protectedLoader} />
-                  <Route path="instructions" element={<Instructions />}>
-                    <Route path="linux-skills" element={<LinuxSkills />} />
-                    <Route path="kali-top-10" element={<KaliTop10 />} />
-                    <Route path="windows-defense" element={<WindowsDefense />} />
-                    <Route path="purple-team" element={<PurpleTeam />} />
-                  </Route>
-                  <Route path="*" element={<NoMatch />} loader={protectedLoader} />
-                </Route>
-              </Routes>
+    <Route path="/" element={<Layout />} loader={authLoader}>
+        <Route index element={<Dashboard />} loader={protectedLoader} />
+        <Route path="forms" element={<Forms />} loader={protectedLoader} />
+        <Route path="instructions" element={<Instructions />} loader={protectedLoader} />
+        <Route path="linux-skills" element={<LinuxSkills />} loader={protectedLoader} />
+        
+        {/* Allow nested routing inside KaliTop10 */}
+        <Route path="instructions/kali-top-10/*" element={<KaliTop10 />} loader={protectedLoader} />
+        
+        <Route path="*" element={<NoMatch />} loader={protectedLoader} />
+    </Route>
+</Routes>
+
             </div>
           </AuthProvider>
         </Authenticator>
