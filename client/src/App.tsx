@@ -34,7 +34,8 @@ import { AuthProvider } from './context/authContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Instructions from './pages/instructions/Instructions';
 import LinuxSkills from './pages/instructions/LinuxSkills';
-import KaliTop10 from './pages/instructions/KaliTop10';
+import KaliTop10 from './pages/instructions/kaliTop10';
+
 
 Amplify.configure({
   Auth: {
@@ -122,7 +123,8 @@ export default function App() {
         
         {/* Allow nested routing inside KaliTop10 */}
         <Route path="instructions/kali-top-10/*" element={<KaliTop10 />} loader={protectedLoader} />
-        
+        <Route path="instructions/linux-skills/*" element={<KaliTop10 />} loader={protectedLoader} />
+        <Route path="arp-cache-me-outside" element={<KaliTop10 />} loader={protectedLoader} />
         <Route path="*" element={<NoMatch />} loader={protectedLoader} />
     </Route>
 </Routes>
