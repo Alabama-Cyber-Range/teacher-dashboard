@@ -63,4 +63,12 @@ export const appNavs = [
     title: "Help",
     to: "/Help",
   },
+  {
+    eventKey: "instructions",
+    title: "Instructions",
+    to: "/instructions",
+  },
+
+
 ];
+
