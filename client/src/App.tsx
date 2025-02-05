@@ -1,9 +1,11 @@
+/// <reference types="vite/client" />
 import React, { useState } from 'react';
-import { Routes, Route, Link, Navigate, Outlet } from 'react-router-dom';
+import { Router,Routes, Route, Link, Navigate, Outlet } from 'react-router-dom';
 import '@aws-amplify/ui-react/styles.css';
 import './App.css';
 import { ThemeProvider, Authenticator } from '@aws-amplify/ui-react';
 import theme from './theme';
+
 
 import Layout from './components/Layout';
 import Dashboard from './pages/dashboard';
@@ -32,10 +34,12 @@ import { getCurrentUser } from 'aws-amplify/auth';
 import { AuthProvider } from './context/authContext';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Instructions from './pages/instructions/Instructions';
-import LinuxSkills from './pages/instructions/LinuxSkills';
-import KaliTop10 from './pages/instructions/kaliTop10';
-
+import Instructions from './pages/Instructions/instructions';
+import LinuxSkills from './pages/Instructions/LinuxSkills';
+import KaliTop10 from './pages/Instructions/KaliTop10';
+import CatsOutOfTheBag from './pages/Instructions/instructions/catsoutofthebag';
+import ArpCacheMeOutside from './pages/Instructions/instructions/arpcachemeoutside';
+import BruteAndLootInstructions from './pages/Instructions/BruteAndLootInstructions';
 
 Amplify.configure({
   Auth: {
@@ -114,8 +118,16 @@ export default function App() {
               <button onClick={openDirections} style={{ padding: '10px 20px', margin: '10px 0', backgroundColor: '#007BFF', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
                 View Directions
               </button>
+
+<Routes>
+  <Route path="/brute-and-loot" element={<BruteAndLootInstructions />} />
+  <Route path="/cats-out-of-the-bag" element={<CatsOutOfTheBag />} />
+  <Route path="/cache-me-outside" element={<ArpCacheMeOutside />} />
+</Routes>
+
+
               <Routes>
-    <Route path="/" element={<Layout />} loader={authLoader}>
+        <Route path="/" element={<Layout />} loader={authLoader}>
         <Route index element={<Dashboard />} loader={protectedLoader} />
         <Route path="forms" element={<Forms />} loader={protectedLoader} />
         <Route path="instructions" element={<Instructions />} loader={protectedLoader} />
@@ -124,11 +136,14 @@ export default function App() {
         {/* Allow nested routing inside KaliTop10 */}
         <Route path="instructions/kali-top-10/*" element={<KaliTop10 />} loader={protectedLoader} />
         <Route path="instructions/linux-skills/*" element={<KaliTop10 />} loader={protectedLoader} />
-        <Route path="arp-cache-me-outside" element={<KaliTop10 />} loader={protectedLoader} />
+        <Route path="Instructions/instructions/cache-me-outside" element={<ArpCacheMeOutside/>} loader={protectedLoader} />
         <Route path="*" element={<NoMatch />} loader={protectedLoader} />
     </Route>
-</Routes>
 
+</Routes>
+              <div className="App">
+                <Outlet />
+              </div>
             </div>
           </AuthProvider>
         </Authenticator>

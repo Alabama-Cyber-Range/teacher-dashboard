@@ -1,13 +1,12 @@
 import { Heading, View } from "@aws-amplify/ui-react";
-import instructions from "./BruteAndLootInstructions";
 import { Link, Outlet } from "react-router-dom";
 
 function Instructions() {
   return (
     <div>
-      <h2>Instructions</h2>
+      <Heading>Instructions</Heading>
       <nav>
-        <ul>
+          
           <li>
             <Link to="linux-skills">Linux Skills</Link>
           </li>
@@ -20,7 +19,7 @@ function Instructions() {
           <li>
             <Link to="purple-team">Purple Team</Link>
           </li>
-        </ul>
+        
       </nav>
     </div>
   );

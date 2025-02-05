@@ -1,9 +1,11 @@
 import { Link, useRoutes } from "react-router-dom";
 import BruteAndLootInstructions from "./BruteAndLootInstructions";
+import CatsOutOfTheBag from "./instructions/catsoutofthebag";
 
 const KaliTop10 = () => {
     const element = useRoutes([
         { path: "brute-and-loot", element: <BruteAndLootInstructions /> },
+        { path: "cats-out-of-the-bag", element: <CatsOutOfTheBag /> },
     ]);
 
     return (
