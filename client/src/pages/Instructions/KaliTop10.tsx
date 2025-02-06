@@ -1,63 +1,48 @@
 
-import { Link, useRoutes } from "react-router-dom";
-import BruteAndLootInstructions from "./BruteAndLootInstructions";
-import CatsOutOfTheBag from "./instructions/catsoutofthebag";
-import ArpCacheMeOutside from "./instructions/arpcachemeoutside";
+import React from 'react';
+import { Breadcrumbs } from '@aws-amplify/ui-react';
+import { Link }from 'react-router-dom';
 
-const KaliTop10 = () => {
-    const element = useRoutes([
-        { path: "brute-and-loot", element: <BruteAndLootInstructions /> },
-        { path: "cats-out-of-the-bag", element: <CatsOutOfTheBag /> },
-         {path: "cache-me-outside", element: <ArpCacheMeOutside /> }, 
-    ]);
 
-    return (
-        <div>
-            <h3>Kali Top 10</h3>
-            <p>This learning path covers the top 10 tools in Kali Linux.</p>
+export function DefaultBreadcrumbsExample() {
+  return (
+    <Breadcrumbs
+      items={[
+        {
+          href: '/',
+          label: 'Home',
+        },
+        {
+          href: '/react/components',
+          label: 'Components',
+        },
+        {
+          label: 'Breadcrumbs',
+        },
+      ]}
+    />
+  );
+}
 
-            <h4>Modules:</h4>
-            <ul>
-                <li>
-                    <Link to="cache-me-outside">ARP: Cache Me Oustide</Link>
-                </li>
-                <li>
-                    <Link to="brute-and-loot">Brute and Loot</Link>
-                </li>
-                <li>
-                    <Link to="cats-out-of-the-bag">Cat's Out of the Bag</Link>
-                </li>
-                <li>
-                    <Link to="crack-the-web">Crack The Web</Link>
-                </li>
-                <li>
-                    <Link to="hash-it-out-with-NTLM">Hash it Out with NTLM</Link>
-                </li>
-                <li>
-                    <Link to="house-of-eternal-blues">How of Eternal Blues</Link>
-                </li>
-                <li>
-                    <Link to="maltego-mindmap">Maltego Mindmap</Link>
-                </li>
-                <li>
-                    <Link to="metasploit-mayhem">Metasploit Mayhem</Link>
-                </li>
-                <li>
-                    <Link to="the-credential-cracker">The Credential Cracker</Link>
-                </li>
-                <li>
-                    <Link to="the-network-navigator">The Network Navigator</Link>
-                </li>
-                <li>
-                    <Link to="wireshark-wizardry">Wireshark Wizardry</Link>
-                </li>
-
-            </ul>
-
-            {/* Render the sub-route if it matches */}
-            {element}
-        </div>
-    );
+const KaliTop10: React.FC = () => {
+  return (
+    <div>
+      <h1>Kali Top 10 </h1>
+      <ul>
+        <li><Link to="/instructions/cats-out-of-the-bag">Cats Out of the Bag</Link></li>
+        <li><Link to="/instructions/arp-cache-me-outside">Arp Cache Me Outside</Link></li>
+        <li><Link to="/instructions/brute-and-loot">Brute and Loot</Link></li>
+        <li><Link to="/instructions/crack-the-web">Crack The Web</Link></li>
+        <li><Link to="/instructions/hash-it-out-with-ntlm">Hash it out with NTLM</Link></li>
+        <li><Link to="/instructions/house-of-eternal-blues">House of Eternal Blues</Link></li>
+        <li><Link to="/instructions/malt-ego-mind-map">Malt Ego Mind Map</Link></li>
+        <li><Link to="/instructions/meta-sploit-mayham">Meta Sploit Mayham</Link></li>
+        <li><Link to="/instructions/the-credential-cracker">The Credential Cracker</Link></li>
+        <li><Link to="/instructions/the-network-navigator">The Network Navigator</Link></li>
+        <li><Link to="/instructions/wire-shark-wizardy">Wire Shark Wizardy</Link></li>
+      </ul>
+    </div>
+  );
 };
 
 export default KaliTop10;
