@@ -1,8 +1,10 @@
 import React from "react";
+import Breadcrumbs from "../../../components/Breadcrumbs";
 
 const ArpCacheMeOutside = () => {
     return (
         <div>
+            <Breadcrumbs />
             <h1>ARP: Cache' Me Outside</h1>
 
             <div className="section">

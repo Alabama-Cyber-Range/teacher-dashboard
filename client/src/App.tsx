@@ -39,6 +39,8 @@ import KaliTop10 from './pages/Instructions/KaliTop10';
 import CatsOutOfTheBag from './pages/Instructions/instructions/catsoutofthebag';
 import ArpCacheMeOutside from './pages/Instructions/instructions/arpcachemeoutside';
 import BruteAndLootInstructions from './pages/Instructions/BruteAndLootInstructions';
+import CrackTheWeb from './pages/Instructions/instructions/cracktheweb';
+import HashItOutWithNtlm from './pages/Instructions/instructions/hashitoutwithntlm';
 
 Amplify.configure({
   Auth: {
@@ -125,9 +127,11 @@ export default function App() {
                   <Route path="instructions" element={<Instructions />} loader={protectedLoader} />
                   <Route path="linux-skills" element={<LinuxSkills />} loader={protectedLoader} />
                   <Route path="instructions/kali-top-10" element={<KaliTop10 />} loader={protectedLoader} />
-                  <Route path="instructions/cats-out-of-the-bag" element={<CatsOutOfTheBag />} loader={protectedLoader} />
-                  <Route path="instructions/arp-cache-me-outside" element={<ArpCacheMeOutside />} loader={protectedLoader} />
-                  <Route path="instructions/brute-and-loot" element={<BruteAndLootInstructions />} loader={protectedLoader} />
+                  <Route path="instructions/kali-top-10/cats-out-of-the-bag" element={<CatsOutOfTheBag />} loader={protectedLoader} />
+                  <Route path="instructions/kali-top-10/arp-cache-me-outside" element={<ArpCacheMeOutside />} loader={protectedLoader} />
+                  <Route path="instructions/kali-top-10/Brute-And-Loot" element={<BruteAndLootInstructions />} loader={protectedLoader} />
+                  <Route path="instructions/kali-top-10/crack-the-web" element={<CrackTheWeb />} loader={protectedLoader} />
+                  <Route path="instructions/kali-top-10/hash-it-out-with-ntlm" element={<HashItOutWithNtlm />} loader={protectedLoader} />
                   <Route path="*" element={<NoMatch />} loader={protectedLoader} />
                 </Route>
               </Routes>

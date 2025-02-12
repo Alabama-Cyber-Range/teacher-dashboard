@@ -1,47 +1,46 @@
-
 import React from 'react';
-import { Breadcrumbs } from '@aws-amplify/ui-react';
-import { Link }from 'react-router-dom';
-
-
-export function DefaultBreadcrumbsExample() {
-  return (
-    <Breadcrumbs
-      items={[
-        {
-          href: '/',
-          label: 'Home',
-        },
-        {
-          href: '/react/components',
-          label: 'Components',
-        },
-        {
-          label: 'Breadcrumbs',
-        },
-      ]}
-    />
-  );
-}
+import { Link, useLocation } from 'react-router-dom';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import { Heading, Flex } from '@aws-amplify/ui-react';
 
 const KaliTop10: React.FC = () => {
+  const location = useLocation();
+  const pathnames = location.pathname.split('/').filter((x) => x);
+
   return (
-    <div>
-      <h1>Kali Top 10 </h1>
-      <ul>
-        <li><Link to="/instructions/cats-out-of-the-bag">Cats Out of the Bag</Link></li>
-        <li><Link to="/instructions/arp-cache-me-outside">Arp Cache Me Outside</Link></li>
-        <li><Link to="/instructions/brute-and-loot">Brute and Loot</Link></li>
-        <li><Link to="/instructions/crack-the-web">Crack The Web</Link></li>
-        <li><Link to="/instructions/hash-it-out-with-ntlm">Hash it out with NTLM</Link></li>
-        <li><Link to="/instructions/house-of-eternal-blues">House of Eternal Blues</Link></li>
-        <li><Link to="/instructions/malt-ego-mind-map">Malt Ego Mind Map</Link></li>
-        <li><Link to="/instructions/meta-sploit-mayham">Meta Sploit Mayham</Link></li>
-        <li><Link to="/instructions/the-credential-cracker">The Credential Cracker</Link></li>
-        <li><Link to="/instructions/the-network-navigator">The Network Navigator</Link></li>
-        <li><Link to="/instructions/wire-shark-wizardy">Wire Shark Wizardy</Link></li>
-      </ul>
-    </div>
+   
+    <Flex direction="column" gap="30px">
+     
+      <Breadcrumbs/>
+      <Heading>Kali Top 10</Heading>
+      <Flex direction="column" gap="20px">
+      
+        <Link to="/Instructions/Kali-Top-10/Cats-Out-Of-The-Bag">Cats Out of the Bag</Link>
+
+        <Link to="/Instructions/Kali-Top-10/Arp-Cache-Me-Outside">Arp Cache Me Outside</Link>
+
+        <Link to="/Instructions/Kali-Top-10/Brute-And-Loot">Brute and Loot</Link>
+
+        <Link to="/Instructions/Kali-Top-10/Crack-The-Web">Crack The Web</Link>
+
+        <Link to="/Instructions/Kali-Top-10/Hash-It-Out-With-NTLM">Hash it out with NTLM</Link>
+
+        <Link to="/Instructions/house-of-eternal-blues">House of Eternal Blues</Link>
+
+        <Link to="/Instructions/malt-ego-mind-map">Malt Ego Mind Map</Link>
+
+        <Link to="/Instructions/meta-sploit-mayham">Meta Sploit Mayham</Link>
+
+        <Link to="/Instructions/the-credential-cracker">The Credential Cracker</Link>
+
+        <Link to="/Instructions/the-network-navigator">The Network Navigator</Link>
+
+        <Link to="/Instructions/wire-shark-wizardy">Wire Shark Wizardy</Link>
+      
+      </Flex>
+    </Flex>
+  
+  
   );
 };
 

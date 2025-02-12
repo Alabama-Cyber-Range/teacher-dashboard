@@ -1,5 +1,5 @@
-import { Heading, View } from "@aws-amplify/ui-react";
-import { Link, Outlet } from "react-router-dom";
+import { Heading } from "@aws-amplify/ui-react";
+import { Link} from "react-router-dom";
 
 function Instructions() {
   return (
@@ -11,7 +11,7 @@ function Instructions() {
             <Link to="linux-skills">Linux Skills</Link>
           </li>
           <li>
-            <Link to="kali-top-10">Kali Top 10</Link>
+            <Link to="Kali-Top-10">Kali Top 10</Link>
           </li>
           <li>
             <Link to="windows-defense">Windows Defense</Link>
@@ -22,6 +22,7 @@ function Instructions() {
         
       </nav>
     </div>
+    
   );
 }
 export default Instructions;

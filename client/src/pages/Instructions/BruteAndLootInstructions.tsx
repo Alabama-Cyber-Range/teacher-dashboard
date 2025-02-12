@@ -1,8 +1,16 @@
+import Breadcrumbs from "../../components/Breadcrumbs";
+import { Heading, Flex } from "@aws-amplify/ui-react";
+
+
+
 const BruteAndLootInstructions = () => {
   return (
-      <div className="brute-loot-demo">
-          <h2>Brute &amp; Loot: Exploiting HTTP Basic Authentication</h2>
-          <h3>Scenario:</h3>
+    <Flex direction="column" gap="30px">
+      
+        <Breadcrumbs />
+    
+          <Heading>Brute &amp; Loot: Exploiting HTTP Basic Authentication</Heading> 
+          Scenario:
           <p>
               A web server protected by HTTP basic authentication has been identified during a reconnaissance scan. Your goal is to brute-force the login credentials and access the restricted area of the server. Using Hydra and the RockYou wordlist, you'll simulate an attack to reveal weak passwords and gain access.
           </p>
@@ -109,7 +117,8 @@ Host is up (0.0010s latency).</pre>
           <p>
               <strong>Find the Sensitive Data:</strong> Explore the admin dashboard for files, document your findings, and analyze potential vulnerabilities.
           </p>
-      </div>
+      
+     </Flex>
   );
 };
 
